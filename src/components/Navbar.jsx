@@ -4,12 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 function Navbar() {
   //links need to be filled in
   //bool loggedin should probably take in some actual state from a context probably
-  let loggedin = true;
+  let loggedin = false;
   const navigate = useNavigate();
   const [formText, setFormText] = useState("");
   const [formOption, setFormOption] = useState("All");
 
   const searchFunction = () => {
+    if(formText.length == 0){
+      navigate("/");
+      return
+    }
     navigate("/");
   };
 
@@ -48,7 +52,7 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/about">
                 About
               </Link>
             </li>
@@ -94,13 +98,12 @@ function Navbar() {
             ) : (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/">
-                    
+                  <Link className="nav-link" to="/register">
                     Register
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/">
+                  <Link className="nav-link" to="/login">
                     <i className="bi bi-box-arrow-in-right"></i>Login
                   </Link>
                 </li>
@@ -109,7 +112,7 @@ function Navbar() {
           </ul>
 
           <form
-            onSubmit={onFunction}
+            onSubmit={searchFunction}
             className="d-flex justify-content-end navbar-right"
           >
             <select onChange={optionChange} value={formOption} className="mx-1">
