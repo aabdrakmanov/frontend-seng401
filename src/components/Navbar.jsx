@@ -10,7 +10,7 @@ function Navbar() {
   const [formOption, setFormOption] = useState("All");
 
   const searchFunction = () => {
-    if(formText.length == 0){
+    if(formText.length === 0){
       navigate("/");
       return
     }
@@ -98,8 +98,8 @@ function Navbar() {
             ) : (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/register">
-                    Register
+                  <Link className="nav-link" to="/signup">
+                    Sign up
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -129,7 +129,7 @@ function Navbar() {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-primary" type="submit">
               Search
             </button>
           </form>
