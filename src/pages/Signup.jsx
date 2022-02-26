@@ -18,9 +18,9 @@ function Signup() {
       registerInfo.username.length === 0 ||
       registerInfo.password.length === 0
     ) {
-      setError("username or password cannot be null");
+      setError("Username or password cannot be null");
     } else if (registerInfo.password !== registerInfo.retype) {
-      setError("retyped password does not match password");
+      setError("Retyped password does not match password");
     } else {
       //add user to database, set state for user as if they logged in
       navigate("/");
@@ -93,8 +93,8 @@ function Signup() {
                 id="type"
                 value={registerInfo.type}
               >
-                <option value="developer">developer</option>
-                <option value="normal user">normal user</option>
+                <option value="developer">Developer</option>
+                <option value="normal user">Normal user</option>
               </select>
             </div>
           </div>
