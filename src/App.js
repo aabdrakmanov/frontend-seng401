@@ -6,6 +6,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Signup from './pages/Signup'
 import { UserProvider } from './context/UserContext';
+import AppEntry from './pages/AppEntry';
 function App() {
   return (
     <UserProvider>
@@ -16,6 +17,7 @@ function App() {
           <Route path = '/about' element = {<About/>} />
           <Route path = '/login' element = {<Login/>} />
           <Route path = '/signup' element = {<Signup/>} />
+          <Route path = "/app/:name" element = {<AppEntry></AppEntry>}></Route>
         </Routes>
    
       </Router>

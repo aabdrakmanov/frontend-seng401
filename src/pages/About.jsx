@@ -1,14 +1,26 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-
+import {useEffect,useState} from 'react'
 function About() {
+
+  const [data,setData] = useState({name : "default"})
+  useEffect( ()=>{
+    async function fetchdata(){
+     const data2 = await fetch("http://localhost:5000/test").then((response)=> response.json())
+     setData(data2)
+    }
+    fetchdata()
+
+  }
+   ,[] )
   return (
     <>
       <Navbar />
 
       <div className="container">
         <h1>Appalytics</h1>
-
+        <h1>{data.name}</h1>
+        <h1>{data.major}</h1>
         <p className="text-start">
           Our web app is an analysis of application reviews and sentiment from
           Google Play Store and Twitter. We plan on using machine learning to
