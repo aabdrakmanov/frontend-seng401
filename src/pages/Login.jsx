@@ -1,9 +1,11 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useNavigate,Link } from "react-router-dom";
 import "../static/css/login.css"
+import UserContext from "../context/UserContext";
 function Login() {
+    const {setUser} = useContext(UserContext)
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({
     username: "",
@@ -14,6 +16,8 @@ function Login() {
     e.preventDefault();
     
     //probably needs something to validate the login first
+    const data2 = await fetch("http://localhost:5000/api/login").then((response)=> response.json())
+
     if (loginInfo.username === "ai" && loginInfo.password === "hayasaka") {
       //probably needs to set the state in the context
       navigate("/");

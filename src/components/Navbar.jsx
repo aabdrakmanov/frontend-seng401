@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
 function Navbar() {
   //links need to be filled in
   //bool loggedin should probably take in some actual state from a context probably
@@ -8,7 +9,7 @@ function Navbar() {
   const navigate = useNavigate();
   const [formText, setFormText] = useState("");
   const [formOption, setFormOption] = useState("All");
-
+  const {user,setUser,logout} = useContext(UserContext)
   const searchFunction = () => {
     if(formText.length === 0){
       navigate("/");
@@ -59,7 +60,7 @@ function Navbar() {
             </li>
           </ul>
           {/*displays user profile if logged in, else displays log in and register links */}
-          {loggedin && (
+          {user && (
             <img
               src="https://cdn.discordapp.com/emojis/754592761029853184.webp?size=128&quality=lossless"
               className="ms-2 me-1 mt-1 profile-picture"
@@ -67,7 +68,7 @@ function Navbar() {
           )}
           <ul className="navbar-nav ms-2 me-1">
             <li className="nav-item"></li>
-            {loggedin ? (
+            {user ? (
               <li className="nav-item">
                 <div className="dropdown">
                   <a
@@ -90,7 +91,7 @@ function Navbar() {
                     <Link className="dropdown-item" to="/">
                       Settings
                     </Link>
-                    <Link className="dropdown-item" to="/">
+                    <Link onClick = {logout} className="dropdown-item" to="/">
                       Logout
                     </Link>
                   </div>

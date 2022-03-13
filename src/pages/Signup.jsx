@@ -1,9 +1,11 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 import "../static/css/login.css";
 function Signup() {
+  const {setUser} = useContext(UserContext)
   const navigate = useNavigate();
   const [registerInfo, setRegisterInfo] = useState({
     username: "",
@@ -19,13 +21,20 @@ function Signup() {
     if (
       registerInfo.username.length === 0 ||
       registerInfo.password.length === 0 ||
-      registerInfo.email.length == 0
+      registerInfo.email.length === 0
     ) {
       setError("Username or password cannot be null");
     } else if (registerInfo.password !== registerInfo.retype) {
       setError("Retyped password does not match password");
     } else {
       //add user to database, set state for user as if they logged in
+      const data2 = await fetch("http://localhost:5000/api/signup",
+      {
+        method : 'POST',
+        body: JSON.stringify(registerInfo),
+        headers: { 'Content-Type': 'application/json' }
+    }).then((response)=> response.json())
+      setUser(registerInfo)
       navigate("/");
     }
   };
