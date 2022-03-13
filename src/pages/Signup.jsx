@@ -1,8 +1,8 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
-import "../static/css/login.css"
+import { useNavigate, Link } from "react-router-dom";
+import "../static/css/login.css";
 function Signup() {
   const navigate = useNavigate();
   const [registerInfo, setRegisterInfo] = useState({
@@ -39,91 +39,76 @@ function Signup() {
   };
   return (
     <>
-     <div id="container2" class="container2 signup">
- 
-    <div class="row2">
-        <div class="col2 align-items-center flex-col2 signup">
-            <form action ="signup" onSubmit={onSubmit}>
-            <div class="form-wrapper align-items-center">
+      <div id="container2" class="container2 signup">
+        <div class="row2">
+          <div class="col2 align-items-center flex-col2 signup">
+            <form action="signup" onSubmit={onSubmit}>
+              <div class="form-wrapper align-items-center">
                 <div class="form signup">
-                    <div class="input-group">
-                        <i class='bx bxs-user'></i>
-                        <input onChange = {setInput} type="text" name="username" id="username" class="form-control" placeholder="Username" autofocus=""/>
-                    </div>
-                    <div class="input-group">
-                        <i class='bx bx-mail-send'></i>
-                        <input onChange = {setInput} type="email" name = "email" id = "email" placeholder="Email" data-error="Invalid Email Address" required/>
-                    </div>
-                    <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
-                        <input onChange = {setInput} type="password" name = "password" id = "password" placeholder="Password"/>
-                    </div>
-                    <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
-                        <input onChange = {setInput} type="password" id = "retype" placeholder="Confirm password"/>
-                    </div>
+                  <div class="input-group">
+                    <i class="bx bxs-user"></i>
+                    <input
+                      onChange={setInput}
+                      type="text"
+                      name="username"
+                      id="username"
+                      class="form-control"
+                      placeholder="Username"
+                      autofocus=""
+                    />
+                  </div>
+                  <div class="input-group">
+                    <i class="bx bx-mail-send"></i>
+                    <input
+                      onChange={setInput}
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="Email"
+                      data-error="Invalid Email Address"
+                      required
+                    />
+                  </div>
+                  <div class="input-group">
+                    <i class="bx bxs-lock-alt"></i>
+                    <input
+                      onChange={setInput}
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <div class="input-group">
+                    <i class="bx bxs-lock-alt"></i>
+                    <input
+                      onChange={setInput}
+                      type="password"
+                      id="retype"
+                      placeholder="Confirm password"
+                    />
+                  </div>
 
+                  <button type="submit">Sign Up</button>
 
-
-
-                     <button type="submit" >Sign Up
-                  
-                     </button>
-
-                    <p>
-                        <span>
-                            Already have an account?
-                        </span>
-                        <Link to = "/login">
-                            Sign in here
-                        </Link>
-                    </p>
-
+                  <p>
+                    <span>Already have an account?</span>
+                    <Link to="/login">Sign in here</Link>
+                  </p>
                 </div>
-
-
-            </div>
-                            </form>
-
-
-        </div>
-
-      
-    </div>
-    
-    <div class="row2 content-row2">
-       
-        <div class="col2 align-items-center flex-col2">
-         
-           
-        </div>
-      
-        <div class="col2 align-items-center flex-col2">
-            <div class="img signup">
-
-            </div>
+              </div>
+            </form>
           </div>
-          <div className="mb-3 ">
-            <label htmlFor="type" className="form-label">
-              Sign up as
-            </label>
-            <div className="d-flex justify-content-center ">
-              <select
-                onChange={setInput}
-                className="form-control w-25"
-                id="type"
-                value={registerInfo.type}
-              >
-                <option value="developer">Developer</option>
-                <option value="normal user">Normal user</option>
-              </select>
-            </div>
         </div>
-       
-    </div>
-    
-</div>
 
+        <div class="row2 content-row2">
+          <div class="col2 align-items-center flex-col2"></div>
+
+          <div class="col2 align-items-center flex-col2">
+            <div class="img signup"></div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
