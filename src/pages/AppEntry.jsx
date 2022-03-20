@@ -1,9 +1,36 @@
 import React from "react";
+import { useEffect,useState } from "react"
+import { useNavigate,Link,useSearchParams } from "react-router-dom";
 import "../static/css/templatemo-main.css";
 
 import piechart1 from "../static/img/piechart.png";
 import bigitem2 from "../static/img/2nd-big-item.jpg";
 function AppEntry() {
+  const [searchParams] = useSearchParams()
+  const a = (searchParams.get("company"))
+  
+  const [appData,setData] = useState({
+    numberOfReviews:0,
+    numberOfPatchs:0,
+    Summary: "",
+    sentimentPieChart:"static/img/piechart2.jpg",
+    ratingsPieChart:"static/img/piechart2.jpg",
+    issuesBarChart:"static/img/piechart2.jpg",
+    issuesPieChar:"static/img/piechart2.jpg",
+    timePeriod: [],
+    Bugs: [{Issues:"bruh", Status: "bd"},{Issues:"s", Status: "kami"}]
+      
+  })
+  useEffect(()=>{
+    const fetchData = async()=>{
+      const data =  await fetch(`http://localhost:5000/devPost?company=${a}`).then((response)=> response.json())
+      setData(data)
+    }
+    fetchData()
+  }, [])
+  
+ 
+
   return (
     <>
       <div className="fixed-side-navbar">
@@ -38,12 +65,12 @@ function AppEntry() {
       <div className="parallax-content baner-content" id="home">
         <div className="container">
           <div className="first-content">
-            <h1>SLACK</h1>
+            <h1>{a}</h1>
             <span>
               <em>APP</em> Analysis
             </span>
             <div className="primary-button">
-              <a href="login">Switch Account</a>
+              <Link to = "/login">Switch Account</Link>
             </div>
           </div>
         </div>
@@ -72,17 +99,14 @@ function AppEntry() {
                 <br />
                 <br />
                 <h4>
-                  <b>Slack</b>
+                  <b>{a}</b>
                 </h4>
                 <div class="line-dec"></div>
 
                 <h4>
                   <i>
                     {" "}
-                    Slack is a messaging app for business that connects people
-                    to the information they need. By bringing people together to
-                    work as one unified team, Slack transforms the way
-                    organizations communicate.
+                    {appData.Summary}
                   </i>
                 </h4>
 
@@ -100,7 +124,7 @@ function AppEntry() {
                       <div class="marged flex">
                         <div class="number-item">
                           <h1>
-                            <span class="value">16235</span>
+                            <span class="value">{appData.numberOfReviews}</span>
                           </h1>
                         </div>
                       </div>
@@ -115,7 +139,7 @@ function AppEntry() {
                       <div class="marged flex">
                         <div class="number-item">
                           <h1>
-                            <span class="value">276</span>
+                            <span class="value">{appData.numberOfPatchs}</span>
                           </h1>
                         </div>
                       </div>
@@ -127,7 +151,7 @@ function AppEntry() {
                   <div class="service-item">
                     <h4>Sentiment Distribution</h4>
                     <div class="line-dec"></div>
-                    <a href="static/img/piechart2.jpg" data-lightbox="image-1">
+                    <a href={appData.sentimentPieChart} data-lightbox="image-1">
                       <img src="static/img/piechart2.jpg" alt="" />
                     </a>
                     <p>
@@ -140,7 +164,7 @@ function AppEntry() {
                   <div class="service-item">
                     <h4>Ratings Distribution</h4>
                     <div class="line-dec"></div>
-                    <a href="static/img/piechart1.jpg" data-lightbox="image-1">
+                    <a href={appData.ratingsPieChart} data-lightbox="image-1">
                       <img src="static/img/piechart1.jpg" alt="" />
                     </a>
                     <p>
@@ -154,7 +178,7 @@ function AppEntry() {
                   <div class="service-item">
                     <h4>Issue Distribution</h4>
                     <div class="line-dec"></div>
-                    <a href="static/img/pirechart9.jpg" data-lightbox="image-1">
+                    <a href={appData.issuesBarChart} data-lightbox="image-1">
                       <img src="static/img/pirechart9.jpg" alt="" />
                     </a>
                     <p>
@@ -168,7 +192,7 @@ function AppEntry() {
                   <div class="service-item">
                     <h4>Major Bugs Identified</h4>
                     <div class="line-dec"></div>
-                    <a href="static/img/bargraph.jpg" data-lightbox="image-1">
+                    <a href={appData.issuesPieChart} data-lightbox="image-1">
                       <img src="static/img/bargraph.jpg" alt="" />
                     </a>
                     <p>
@@ -629,10 +653,15 @@ function AppEntry() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
+              {appData.Bugs.map((bug)=>(
+                <tr>
+                <td>{bug.Issues}</td>
+                <td>{bug.Status}</td>
               </tr>
+
+
+              ))}
+              
             </tbody>
           </table>
         </div>

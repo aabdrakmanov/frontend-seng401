@@ -12,7 +12,7 @@ function Signup() {
     password: "",
     email: "",
     retype: "",
-    type: "developer",
+   
   });
   const [error, setError] = useState("");
   const onSubmit = async (e) => {
@@ -28,14 +28,25 @@ function Signup() {
       setError("Retyped password does not match password");
     } else {
       //add user to database, set state for user as if they logged in
+      const finalRegister = {
+        user:registerInfo.username,
+        password:registerInfo.password,
+        email:registerInfo.email
+      }
       const data2 = await fetch("http://localhost:5000/api/signup",
       {
         method : 'POST',
-        body: JSON.stringify(registerInfo),
+        body: JSON.stringify(finalRegister),
         headers: { 'Content-Type': 'application/json' }
     }).then((response)=> response.json())
-      setUser(registerInfo)
+      if(data2.status == 201){
+      setUser({company:data2.company, isGeneral: data2.isGeneral})
       navigate("/");
+      }
+      else {
+        setError("Something wrong happened during sign up")
+      }
+      
     }
   };
   const setInput = (e) => {
@@ -104,6 +115,7 @@ function Signup() {
                     <span>Already have an account?</span>
                     <Link to="/login">Sign in here</Link>
                   </p>
+                  {error.length != 0 && <p>{setError}</p>}
                 </div>
               </div>
             </form>

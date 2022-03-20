@@ -8,7 +8,7 @@ function Login() {
     const {setUser} = useContext(UserContext)
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [error, setError] = useState(false);
@@ -16,10 +16,14 @@ function Login() {
     e.preventDefault();
     
     //probably needs something to validate the login first
-    const data2 = await fetch("http://localhost:5000/api/login").then((response)=> response.json())
+    const data2 = await fetch("http://localhost:5000/api/login").then((response)=> response.json(), {
+        body: JSON.stringify(loginInfo),
+        headers: { 'Content-Type': 'application/json' }
+    })
 
-    if (loginInfo.username === "ai" && loginInfo.password === "hayasaka") {
+    if (data2.status === 200) {
       //probably needs to set the state in the context
+      setUser({company:data2.company,isGeneral:data2.isGeneral})
       navigate("/");
     } else {
       setError(true);
