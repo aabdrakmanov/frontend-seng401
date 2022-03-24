@@ -146,7 +146,7 @@ def getSiginDB():
             if(user[1]==email and user[2]==password):
                 return jsonify({'status':"success"}), 200
 
-    return jsonify({'error':'No valid account found!'}), 200
+    return jsonify({'error':'No valid account found!'}), 500
 
 
 @app.route('/loggedIn', methods = ['POST', 'GET'])
