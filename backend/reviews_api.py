@@ -1,3 +1,26 @@
+
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from flask import Flask, request, jsonify, make_response, send_from_directory, send_file, render_template, url_for
+import os
+import flask
+from flask_cors import CORS
+import pandas as pd
+import numpy as np
+import requests
+from flask_mysqldb import MySQL
+
+app = Flask(__name__)
+
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'applytics'
+
+CORS(app)
+mysql = MySQL(app)
+
 @app.route('/addReview', methods = ['POST'])
 def addReview():
     
@@ -59,28 +82,6 @@ def getReviewApp():
             myResult.append({"ID":row[0], "review": row[1]})
 
         return jsonify(myResult), 200
-
-from django.http import JsonResponse
-from django.shortcuts import redirect, render
-from flask import Flask, request, jsonify, make_response, send_from_directory, send_file, render_template, url_for
-import os
-import flask
-from flask_cors import CORS
-import pandas as pd
-import numpy as np
-import requests
-from flask_mysqldb import MySQL
-
-app = Flask(__name__)
-
-
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'applytics'
-
-CORS(app)
-mysql = MySQL(app)
 
 
 @app.route('/editReview', methods = ['PUT'])
