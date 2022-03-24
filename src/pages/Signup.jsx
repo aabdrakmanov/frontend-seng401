@@ -41,7 +41,7 @@ function Signup() {
     }).then((response)=> response.json())
       if(data2.status == 201){
       setUser({company:data2.company, isGeneral: data2.isGeneral})
-      navigate("/");
+      navigate("/loggedin");
       }
       else {
         setError("Something wrong happened during sign up")

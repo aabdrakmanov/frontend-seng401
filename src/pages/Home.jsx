@@ -94,7 +94,7 @@ function Home() {
                     </div>
                 </div>
                 </div>
-                <section id="section-featurettes" className="featurettes overlay bg-fixed" style={{ backgroundImage: `url(${require("../static/img/orange.jpg")})` }}>
+                <section id="section-featurettes" className="featurettes " style={{ backgroundImage: `url(${require("../static/img/orange.jpg")})` }}>
 
    
                 <div className="container">

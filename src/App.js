@@ -8,6 +8,7 @@ import Signup from './pages/Signup'
 import { UserProvider } from './context/UserContext';
 import AppEntry from './pages/AppEntry';
 import AppSearchResults from './pages/AppSearchResults';
+import ViewApps from './pages/ViewApps';
 function App() {
   return (
     <UserProvider>
@@ -20,6 +21,7 @@ function App() {
           <Route path = '/signup' element = {<Signup/>} />
           <Route path="/devResult" element = {<AppEntry/>}/>
           <Route path = "/search/:text" element = {<AppSearchResults/>}/>
+          <Route path = "/loggedin" element = {<ViewApps/>} />
         </Routes>
    
       </Router>

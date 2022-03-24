@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 //stores all the user info for all the components to share
 const UserContext = createContext();
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(true);
   const login = () => {
     //makes some call to the api to validate login, if login valid set user , else keep user as null
   };

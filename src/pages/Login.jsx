@@ -24,7 +24,7 @@ function Login() {
     if (data2.status === 200) {
       //probably needs to set the state in the context
       setUser({company:data2.company,isGeneral:data2.isGeneral})
-      navigate("/");
+      navigate("/loggedin");
     } else {
       setError(true);
     }
