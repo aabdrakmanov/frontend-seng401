@@ -9,7 +9,7 @@ function Navbar() {
   const navigate = useNavigate();
   const [formText, setFormText] = useState("");
   const [formOption, setFormOption] = useState("All");
-  const {user,setUser,logout} = useContext(UserContext)
+  const {user,logout} = useContext(UserContext)
   const searchFunction = () => {
     if(formText.length === 0){
       navigate("/");
@@ -67,7 +67,7 @@ function Navbar() {
             </li>
           </ul>
           {/*displays user profile if logged in, else displays log in and register links */}
-          {user && (
+          {localStorage.getItem("username") !== null && (
             <img
               src="https://cdn.discordapp.com/emojis/754592761029853184.webp?size=128&quality=lossless"
               className="ms-2 me-1 mt-1 profile-picture"
@@ -75,7 +75,7 @@ function Navbar() {
           )}
           <ul className="navbar-nav ms-2 me-1">
             <li className="nav-item"></li>
-            {user ? (
+            {localStorage.getItem("username") !== null ? (
               <li className="nav-item">
                 <div className="dropdown">
                   <a
@@ -86,7 +86,7 @@ function Navbar() {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Username
+                    {localStorage.getItem("username")}
                   </a>
                   <div className="dropdown-menu" aria-labelledby="triggerId">
                     <Link className="dropdown-item" to="/">

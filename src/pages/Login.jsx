@@ -4,8 +4,9 @@ import { useState,useContext } from "react";
 import { useNavigate,Link } from "react-router-dom";
 import "../static/css/login.css"
 import UserContext from "../context/UserContext";
+import axios from "axios";
 function Login() {
-    const {setUser} = useContext(UserContext)
+    const {login} = useContext(UserContext)
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({
     email: "",
@@ -16,18 +17,21 @@ function Login() {
     e.preventDefault();
     
     //probably needs something to validate the login first
-    const data2 = await fetch("http://localhost:5000/api/login").then((response)=> response.json(), {
-        body: JSON.stringify(loginInfo),
-        headers: { 'Content-Type': 'application/json' }
-    })
+    try{
+        const data2 = await axios.post("http://127.0.0.1:5000/login",{email:loginInfo.email,password:loginInfo.password})
+           console.log(data2)
 
     if (data2.status === 200) {
       //probably needs to set the state in the context
-      setUser({company:data2.company,isGeneral:data2.isGeneral})
+      login(data2.data)
       navigate("/loggedin");
     } else {
       setError(true);
     }
+}
+catch {
+    setError()
+}
   };
   const setInput = (e) => {
     console.log("hi")
@@ -58,7 +62,7 @@ function Login() {
                 <div className="form signin">
                     <div className="input-group">
                         <i className='bx bxs-user'></i>
-                        <input onChange = {setInput} type="text" name="inputName" id="username" className="form-control" value = {loginInfo.username} placeholder="Username" autoFocus=""/>
+                        <input onChange = {setInput} type="text" name="inputName" id="email" className="form-control" value = {loginInfo.email} placeholder="Username" autoFocus=""/>
                     </div>
                     <div className="input-group">
                         <i className='bx bxs-lock-alt'></i>

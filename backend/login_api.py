@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'newrootpassword'
 app.config['MYSQL_DB'] = 'applytics'
 
 CORS(app)
@@ -24,9 +24,9 @@ def signup():
 
     print("signup")
 
-    name = request.form.get("username")
-    email = request.form.get("email")
-    password = request.form.get("password")
+    name = request.json.get("username")
+    email = request.json.get("email")
+    password = request.json.get("password")
     
     atPos = email.find('@')
     domain = email[atPos+1:]
@@ -38,23 +38,23 @@ def signup():
 
     print(company)
 
-    result = {"name": name, "email": email, "password": password, "company": company}
-
+    result = {"username": name, "email": email, "password": password, "company": company}
+    
     response = requests.post("http://127.0.0.1:5000/signupStoreDB", json=result)
 
     print(response.status_code)
 
     if response.status_code == 201:
-        return flask.redirect("loggedIn")
+        return jsonify(result),201
 
     else:
-        return flask.redirect("login")
+        return jsonify({"status":"failed"}),401
     
     
 @app.route('/signupStoreDB', methods= ['POST'])
 def storeSignupToDB():
-
-    name = request.json['name']
+    print(request)
+    username = request.json['username']
     email = request.json['email']
     password = request.json['password']
 
@@ -65,14 +65,14 @@ def storeSignupToDB():
     if (result > 0):
         userDetails = cur0.fetchall()
         for user in userDetails:
-            if (user[1] == email or user[0] == name):
+            if (user[1] == email or user[0] == username):
                 return jsonify({'status':'user already exists.'}), 500
 
     mysql.connection.commit()
     cur0.close()
 
     cur = mysql.connection.cursor()
-    cur.execute("""INSERT INTO USERCREDENTIALS(email,name, password) VALUES(%s,%s,%s)""", (email,name,password))
+    cur.execute("""INSERT INTO USERCREDENTIALS(email,username, password) VALUES(%s,%s,%s)""", (email,username,password))
     mysql.connection.commit()
     cur.close()
 
@@ -80,38 +80,21 @@ def storeSignupToDB():
 
 
 
-@app.route('/signin', methods = ['POST'])
+@app.route('/login', methods = ['POST'])
 def signin():
     print("signin")
 
-    email = request.form.get("email")
-    password = request.form.get("password")
+    print(request.json)
+      
+    email = request.json["email"]
+    password = request.json["password"]
+    print("email is " + str(email))
     atPos = email.find('@')
     domain = email[atPos+1:]
 
     company = domain[0:domain.find('.')]
 
     print(company)
-
-    result = {"email": email, "password": password}
-
-    response = requests.get("http://127.0.0.1:5000/signinGetDB", json=result)
-
-    print(response.status_code)
-
-    if response.status_code == 200:
-        return flask.redirect("loggedIn")
-        #return flask.redirect("http://127.0.0.1:5000/devResult?company="+str(company))
-
-    else:
-        return flask.redirect("login")
-
-
-@app.route('/signinGetDB', methods= ['GET'])
-def getSiginDB():
-
-    email = request.json['email']
-    password = request.json['password']
 
     print("Reached here   "+email)
 
@@ -123,9 +106,21 @@ def getSiginDB():
         userDetails = cur.fetchall()
         for user in userDetails:
             if(user[1]==email and user[2]==password):
-                return jsonify({'status':"success"}), 200
+                print("user is " +str(user[0]))
+                return jsonify({'username': user[0], "email":user[1], "password":user[2]}), 200
 
     return jsonify({'error':'No valid account found!'}), 200
+   
+   
+
+
+@app.route('/signinGetDB', methods= ['POST'])
+def getSiginDB():
+
+    email = request.json["email"]
+    password = request.json["password"]
+
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

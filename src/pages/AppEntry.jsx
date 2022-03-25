@@ -30,9 +30,9 @@ function AppEntry() {
     }
     fetchData()
   }, [])
-  if(!user){
-    return <><Navbar></Navbar><div>You arent logged in</div></>
-  }
+  if(localStorage.getItem("username") === null){
+    return <><Navbar/> <div>You arent logged in</div> </>
+}
  
 
   return (

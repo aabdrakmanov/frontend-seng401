@@ -5,6 +5,9 @@ import Navbar from '../components/Navbar';
 function AppSearchResults() {
     const arr = [1,2,3]
     const {text} = useParams()
+    if(localStorage.getItem("username") === null){
+        return <><Navbar/> <div>You arent logged in</div> </>
+    }
   return (
       <><Navbar></Navbar><div class="container">
 

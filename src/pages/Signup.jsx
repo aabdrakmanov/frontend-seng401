@@ -5,7 +5,8 @@ import { useNavigate, Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import "../static/css/login.css";
 function Signup() {
-  const {setUser} = useContext(UserContext)
+  const {user,login,logout} = useContext(UserContext)
+  
   const navigate = useNavigate();
   const [registerInfo, setRegisterInfo] = useState({
     username: "",
@@ -14,9 +15,12 @@ function Signup() {
     retype: "",
    
   });
+  const axios = require('axios')
   const [error, setError] = useState("");
   const onSubmit = async (e) => {
+    logout()
     e.preventDefault();
+    console.log("entered axios fetchss")
     //probably needs something to validate the details first
     if (
       registerInfo.username.length === 0 ||
@@ -27,25 +31,20 @@ function Signup() {
     } else if (registerInfo.password !== registerInfo.retype) {
       setError("Retyped password does not match password");
     } else {
-      //add user to database, set state for user as if they logged in
-      const finalRegister = {
-        user:registerInfo.username,
-        password:registerInfo.password,
-        email:registerInfo.email
-      }
-      const data2 = await fetch("http://localhost:5000/api/signup",
-      {
-        method : 'POST',
-        body: JSON.stringify(finalRegister),
-        headers: { 'Content-Type': 'application/json' }
-    }).then((response)=> response.json())
-      if(data2.status == 201){
-      setUser({company:data2.company, isGeneral: data2.isGeneral})
-      navigate("/loggedin");
-      }
-      else {
-        setError("Something wrong happened during sign up")
-      }
+      
+      try{
+      const data2 = await axios.post("http://127.0.0.1:5000/signup",
+     {username:registerInfo.username,email: registerInfo.email, password: registerInfo.password})
+        console.log(data2)
+        login(data2.data)
+        
+    navigate("/loggedin");
+      
+    }
+    catch(error){
+      console.log(error)
+      setError("invalid sign up")
+    }
       
     }
   };
@@ -115,7 +114,7 @@ function Signup() {
                     <span>Already have an account?</span>
                     <Link to="/login">Sign in here</Link>
                   </p>
-                  {error.length != 0 && <p>{setError}</p>}
+                  {error.length != 0 && <p>{error}</p>}
                 </div>
               </div>
             </form>
