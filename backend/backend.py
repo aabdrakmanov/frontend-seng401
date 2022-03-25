@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'applytics'
 
 CORS(app)
@@ -43,9 +43,9 @@ def signup():
 
     print("signup")
 
-    name = request.form.get("username")
-    email = request.form.get("email")
-    password = request.form.get("password")
+    name = request.json.get("username")
+    email = request.json.get("email")
+    password = request.json.get("password")
     
     atPos = email.find('@')
     domain = email[atPos+1:]

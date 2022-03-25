@@ -561,8 +561,8 @@ section {
     top: 50%;
     opacity: 1; }
 .grid-item img {
-  width: 80%;
-  height: 80%;
+  height:20em;
+  width: 20em;
 }
 
 .grid-item-wrapper:before {
