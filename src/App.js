@@ -9,6 +9,7 @@ import { UserProvider } from './context/UserContext';
 import AppEntry from './pages/AppEntry';
 import AppSearchResults from './pages/AppSearchResults';
 import ViewApps from './pages/ViewApps';
+import ReviewForm from './pages/ReviewForm';
 function App() {
   return (
     <UserProvider>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/devResult" element = {<AppEntry/>}/>
           <Route path = "/search/:text" element = {<AppSearchResults/>}/>
           <Route path = "/loggedin" element = {<ViewApps/>} />
+          <Route path = "/createReview" element = {<ReviewForm/>}/>
         </Routes>
    
       </Router>

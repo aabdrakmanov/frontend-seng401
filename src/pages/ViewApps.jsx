@@ -20,12 +20,16 @@ import slack from "../static/img/photo-6.jpg"
 import snapchat from "../static/img/photo-7.jpg"
 
 function ViewApps() {
-    useEffect(()=>{const reloadCount = sessionStorage.getItem('reloadCount');
-    if(reloadCount < 1) {
-      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-      window.location.reload();
+    useEffect(()=>{
+    let reloads = sessionStorage.getItem('reloads');
+    if(reloads >= 1) {
+        sessionStorage.removeItem('reloads');
+      
     } else {
-      sessionStorage.removeItem('reloadCount');
+    window.location.reload();
+    sessionStorage.setItem('reloads', (++reloads).toString());
+     
+      
     }},[])
     let [firefoximg,setf] = useState("https://techcrunch.com/wp-content/uploads/2018/07/logo-2.png?w=300")
     const navigate = useNavigate()
