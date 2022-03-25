@@ -12,9 +12,13 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '35.233.204.200'
 app.config['MYSQL_USER'] = 'root'
+<<<<<<< Updated upstream
 app.config['MYSQL_PASSWORD'] = 'password'
+=======
+app.config['MYSQL_PASSWORD'] = 'seng401'
+>>>>>>> Stashed changes
 app.config['MYSQL_DB'] = 'applytics'
 
 CORS(app)
