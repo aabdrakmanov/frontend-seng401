@@ -48,11 +48,18 @@ function Navbar() {
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
+           {user && <><li className="nav-item">
+            <Link className="nav-link" to="/loggedin">
                 Apps
               </Link>
+                  
             </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/createReview">
+                Review
+              </Link>
+            </li> </>
+              }       
             <li className="nav-item">
               <Link className="nav-link" to="/about">
                 About
