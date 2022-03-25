@@ -1,13 +1,15 @@
 import React from "react";
-import { useEffect,useState } from "react"
+import { useEffect,useState,useContext } from "react"
 import { useNavigate,Link,useSearchParams } from "react-router-dom";
 import "../static/css/templatemo-main.css";
-
+import UserContext from "../context/UserContext";
 import piechart1 from "../static/img/piechart.png";
 import bigitem2 from "../static/img/2nd-big-item.jpg";
+import Navbar from "../components/Navbar";
 function AppEntry() {
   const [searchParams] = useSearchParams()
   const a = (searchParams.get("company"))
+  const {user} = useContext(UserContext)
   
   const [appData,setData] = useState({
     numberOfReviews:0,
@@ -28,7 +30,9 @@ function AppEntry() {
     }
     fetchData()
   }, [])
-  
+  if(!user){
+    return <><Navbar></Navbar><div>You arent logged in</div></>
+  }
  
 
   return (
