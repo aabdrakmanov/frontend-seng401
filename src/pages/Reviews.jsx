@@ -1,9 +1,11 @@
 import React from 'react'
-import {useState,useEffect} from 'react'
+import {useState,useEffect,useRef} from 'react'
 import Navbar from '../components/Navbar'
 import axios from "axios";
 import ReviewForm from './ReviewForm';
+
 function Reviews() {
+  const isMounted = useRef(true)
   const [reviewArray,setReviewArray] = useState([])
   const [option,setOption] = useState("all")
   const [appText,setappText] = useState("")
@@ -36,11 +38,15 @@ function Reviews() {
     })
     
     console.log(response.data)
+  if(isMounted.current){
   setReviewArray(response.data)
+  }
     }
     catch(error){
       console.log(error)
+      if(isMounted.current){
       setReviewArray([])
+      }
     }
   }
   const getAllReviews = async ()=>{
@@ -48,11 +54,15 @@ function Reviews() {
     setOption("all")
     const response = await axios.get("http://127.0.0.1:5000/getReview")
     console.log(response.data)
+    if(isMounted.current){
     setReviewArray(response.data)
+    }
     }
     catch(error){
       console.log(error)
+      if(isMounted.current){
       setReviewArray([])
+      }
     }
 
   }
@@ -88,7 +98,9 @@ function Reviews() {
           copyArray[i].review = editText
         }
       }
+      if(isMounted.current){
       setReviewArray(copyArray)
+      }
     /*  if(option === "all"){
         getAllReviews()
       }
@@ -104,7 +116,9 @@ function Reviews() {
       console.log(error)
       window.alert("Something wrong went saving changes")
     }
+    if(isMounted.current){
     setEdited(null)
+    }
 
   }
 
@@ -119,8 +133,10 @@ function Reviews() {
     const newArray = reviewArray.filter((ireview)=>{
       return ireview.ID !== deletedID
     })
+    if(isMounted.current){
     setReviewArray(newArray)
     setDeleted(null)
+    }
   }
   catch(error){
     console.log(error)
@@ -130,7 +146,11 @@ function Reviews() {
 
   }
   useEffect(()=>{
+   
+  
     getAllReviews()
+    
+    return () => { isMounted.current = false }
   },[])
   return (
    <><Navbar /><div className="container mt-2">

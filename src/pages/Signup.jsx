@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import { useState,useContext } from "react";
+import { useState,useContext,useRef,useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import "../static/css/login.css";
 function Signup() {
   const {user,login,logout} = useContext(UserContext)
-  
+  const isMounted = useRef(true)
   const navigate = useNavigate();
   const [registerInfo, setRegisterInfo] = useState({
     username: "",
@@ -36,7 +36,9 @@ function Signup() {
       const data2 = await axios.post("http://34.127.125.239:5000/signup",
      {username:registerInfo.username,email: registerInfo.email, password: registerInfo.password})
         console.log(data2)
+        if(isMounted.current){
         login(data2.data)
+        }
         
     navigate("/loggedin");
       
@@ -48,14 +50,19 @@ function Signup() {
       
     }
   };
+  useEffect(()=>{
+    return ()=> {isMounted.current = false}
+  })
   const setInput = (e) => {
+    if(isMounted.current){
     setRegisterInfo((oldState) => {
       return {
         ...oldState,
         [e.target.id]: e.target.value,
-      };
-    });
-  };
+      }
+    })
+  }
+  }
   if(localStorage.getItem("username") !== null){
     return <><Navbar/> <div>You are already logged in</div> </>
 }

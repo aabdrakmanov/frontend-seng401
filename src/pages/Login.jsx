@@ -1,11 +1,12 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import { useState,useContext } from "react";
+import { useState,useContext,useRef,useEffect } from "react";
 import { useNavigate,Link } from "react-router-dom";
 import "../static/css/login.css"
 import UserContext from "../context/UserContext";
 import axios from "axios";
 function Login() {
+    const isMounted = useRef(true)
     const {login} = useContext(UserContext)
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({
@@ -23,26 +24,36 @@ function Login() {
 
     if (data2.status === 200) {
       //probably needs to set the state in the context
+      
       login(data2.data)
-      navigate("/loggedin");
+      navigate("/loggedin")
+      
     } else {
+    if(isMounted.current){
       setError(true);
+        }
     }
 }
 catch {
-    setError()
+    if(isMounted.current){
+    setError(true)
+    }
 }
   };
   const setInput = (e) => {
     console.log("hi")
+   
     setLoginInfo((oldState) => {
       return {
         ...oldState,
         [e.target.id]: e.target.value,
-      };
-    });
-  };
-  
+      }
+    })
+
+  }
+  useEffect(()=>{
+      return ()=>{isMounted.current = false}
+  })
  
   return (
     <>
