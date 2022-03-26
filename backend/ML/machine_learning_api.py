@@ -13,7 +13,7 @@ import numpy as np
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = '35.233.204.200'
+app.config['MYSQL_HOST'] = '34.83.4.245'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'seng401'
 app.config['MYSQL_DB'] = 'applytics'
@@ -189,5 +189,6 @@ def generateAnalytcis():
     plt.ylabel("Topics for Negative Reviews",fontweight ='bold')
     plt.show()
 
-if __name__ == "__main__":
-  app.run(debug=True)
+
+if __name__ == '__main__':
+      app.run(port=5010)
