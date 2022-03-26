@@ -11,9 +11,9 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '35.233.204.200'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'newrootpassword'
+app.config['MYSQL_PASSWORD'] = 'seng401'
 app.config['MYSQL_DB'] = 'applytics'
 
 CORS(app)

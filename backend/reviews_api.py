@@ -13,9 +13,9 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '35.233.204.200'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'newrootpassword'
+app.config['MYSQL_PASSWORD'] = 'seng401'
 app.config['MYSQL_DB'] = 'applytics'
 
 CORS(app)
@@ -62,12 +62,12 @@ def getReview():
 @app.route('/getReviewApp', methods = ['GET'])
 def getReviewApp():
     
-    app = request.json['app']
+    app = request.args['app']
 
     # retrieve from database
 
     cur = mysql.connection.cursor()
-    result = cur.execute("""R.reviewID, R.review FROM REVIEWS AS R WHERE R.app=%s""",(app,))
+    result = cur.execute("""SELECT R.reviewID, R.review FROM REVIEWS AS R WHERE R.app=%s""",(app,))
 
     if(result<=0):
         return jsonify({"status": "failed"}), 500
@@ -79,7 +79,7 @@ def getReviewApp():
 
         for row in rows:
 
-            myResult.append({"ID":row[0], "review": row[1]})
+            myResult.append({"ID":row[0], "review": row[1], "app": app})
 
         return jsonify(myResult), 200
 

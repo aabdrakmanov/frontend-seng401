@@ -3,30 +3,36 @@ import { useEffect,useState,useContext } from "react"
 import { useNavigate,Link,useSearchParams } from "react-router-dom";
 import "../static/css/templatemo-main.css";
 import UserContext from "../context/UserContext";
-import piechart1 from "../static/img/piechart.png";
-import bigitem2 from "../static/img/2nd-big-item.jpg";
+
 import Navbar from "../components/Navbar";
 function AppEntry() {
   const [searchParams] = useSearchParams()
   const a = (searchParams.get("company"))
-  const {user} = useContext(UserContext)
-  
+  const [formatBugs,setFormatBugs] = useState([])
+  const [reviews,setReviews]= useState([])
   const [appData,setData] = useState({
     numberOfReviews:0,
     numberOfPatchs:0,
     Summary: "",
-    sentimentPieChart:"static/img/piechart2.jpg",
-    ratingsPieChart:"static/img/piechart2.jpg",
-    issuesBarChart:"static/img/piechart2.jpg",
-    issuesPieChar:"static/img/piechart2.jpg",
+    sentimentPieChart:"../static/img/piechart2.jpg",
+    ratingsPieChart:"../static/img/piechart2.jpg",
+    issuesBarChart:"../static/img/piechart2.jpg",
+    issuesPieChart:"../static/img/piechart2.jpg",
     timePeriod: [],
     Bugs: [{Issues:"bruh", Status: "bd"},{Issues:"s", Status: "kami"}]
       
   })
   useEffect(()=>{
     const fetchData = async()=>{
-      const data =  await fetch(`http://localhost:5000/devPost?company=${a}`).then((response)=> response.json())
+      const data =  await fetch(`http://localhost:5000/devResult?company=${a}`).then((response)=> response.json())
+      console.log(data)
       setData(data)
+      let formatBugsCopy = []
+      for(let i = 0; i< data.Bugs.Status.length;i++ ){
+        formatBugsCopy.push({status: data.Bugs.Status[i], issue: data.Bugs.issues[i]})
+
+      }
+      setFormatBugs(formatBugsCopy)
     }
     fetchData()
   }, [])
@@ -223,7 +229,7 @@ function AppEntry() {
                 <div>
                   <div>
                  
-                      <img src={piechart1} alt="" />
+                      <img src={appData.sentimentPieChart} alt="" />
                     
                     <div>
                       <h4>Pie-Chart</h4>
@@ -233,7 +239,7 @@ function AppEntry() {
                 <div >
                   <div >
                    
-                      <img src={bigitem2} alt="" />
+                      <img src={appData.issuesPieChart} alt="" />
                    
                     <div >
                       <h4>Bar-Graph</h4>
@@ -657,14 +663,14 @@ function AppEntry() {
               </tr>
             </thead>
             <tbody>
-              {appData.Bugs.map((bug)=>(
+              {localStorage.getItem("company") !== a && formatBugs.map((bug)=>(
                 <tr>
-                <td>{bug.Issues}</td>
-                <td>{bug.Status}</td>
-              </tr>
+                <td>{bug.issue}</td>
+                <td>{bug.status}</td>
+              </tr>))
 
 
-              ))}
+              }
               
             </tbody>
           </table>

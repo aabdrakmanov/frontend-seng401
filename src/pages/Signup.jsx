@@ -56,6 +56,10 @@ function Signup() {
       };
     });
   };
+  if(localStorage.getItem("username") !== null){
+    return <><Navbar/> <div>You are already logged in</div> </>
+}
+ 
   return (
     <>
       <div id="container2" class="container2 signup">

@@ -13,9 +13,9 @@ import numpy as np
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '35.233.204.200'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'seng401'
 app.config['MYSQL_DB'] = 'applytics'
 
 CORS(app)
@@ -28,7 +28,7 @@ def displayResult():
     company = request.args.get('company')
     print("result page")
     print(company)
-    df = pd.read_csv ('roxy\\app_reviews_slack.csv')
+    df = pd.read_csv ('app_reviews_slack.csv')
 
     summary = df['Summary'][0]
     numPatches = df['numberOfPatches'][0]
@@ -86,9 +86,9 @@ def displayResult():
     result["numberOfReviews"] = numReviews
     result["numberOfPatches"] = numPatches
     result["Summary"] = summary
-    result["timePeriod"] = mainResult
+    #result["timePeriod"] = mainResult
     result["Bugs"] = {"issues": issues, "Status": status} 
-
+    print(result)
     return jsonify(result), 200
 
 def get_sentiment_score(text):
@@ -188,3 +188,6 @@ def generateAnalytcis():
     plt.xlabel("Number of complaints",fontweight ='bold')
     plt.ylabel("Topics for Negative Reviews",fontweight ='bold')
     plt.show()
+
+if __name__ == "__main__":
+  app.run(debug=True)
