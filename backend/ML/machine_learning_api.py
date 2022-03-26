@@ -13,9 +13,9 @@ import numpy as np
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '34.83.4.245'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'seng401'
 app.config['MYSQL_DB'] = 'applytics'
 
 CORS(app)

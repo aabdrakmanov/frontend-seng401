@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: applytics-gke
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: applytics
+  template:
+    metadata:
+      labels:
+        app: applytics
+    spec:
+      containers:
+      - name: frontend
+        image: us-west1-docker.pkg.dev/seng401-applytics/frontend-repo/frontend-gke
+        ports:
+        - containerPort: 3000
+        env:
+          - name: PORT
+            value: "3000"
+      - name: login
+        image: us-west1-docker.pkg.dev/seng401-applytics/login-repo/login-gke
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PORT
+            value: "5000"
+      - name: ml
+        image: us-west1-docker.pkg.dev/seng401-applytics/ml-repo/ml-gke
+        ports:
+        - containerPort: 5010
+        env:
+          - name: PORT
+            value: "5010"
+      - name: review
+        image: us-west1-docker.pkg.dev/seng401-applytics/review-repo/review-gke
+        ports:
+        - containerPort: 5020
+        env:
+          - name: PORT
+            value: "5020"

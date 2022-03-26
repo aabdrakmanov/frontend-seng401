@@ -33,7 +33,7 @@ function Signup() {
     } else {
       
       try{
-      const data2 = await axios.post("http://127.0.0.1:5000/signup",
+      const data2 = await axios.post("http://34.127.125.239:5000/signup",
      {username:registerInfo.username,email: registerInfo.email, password: registerInfo.password})
         console.log(data2)
         login(data2.data)
