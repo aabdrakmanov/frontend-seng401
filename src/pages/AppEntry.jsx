@@ -23,8 +23,10 @@ function AppEntry() {
       
   })
   useEffect(()=>{
+    let isMounted = true;
     const fetchData = async()=>{
       const data =  await fetch(`http://localhost:5000/devResult?company=${a}`).then((response)=> response.json())
+      if(isMounted){
       console.log(data)
       setData(data)
       let formatBugsCopy = []
@@ -34,8 +36,12 @@ function AppEntry() {
       }
       setFormatBugs(formatBugsCopy)
     }
+    }
     fetchData()
-  }, [])
+    return ()=>{isMounted = false}
+  }
+  
+  , [])
   if(localStorage.getItem("username") === null){
     return <><Navbar/> <div>You arent logged in</div> </>
 }
@@ -85,11 +91,11 @@ function AppEntry() {
           </div>
         </div>
       </div>
-      <div class="service-content" id="services">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="left-text">
+      <div className="service-content" id="services">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              <div className="left-text">
                 <br />
                 <br />
                 <br />
@@ -111,7 +117,7 @@ function AppEntry() {
                 <h4>
                   <b>{a}</b>
                 </h4>
-                <div class="line-dec"></div>
+                <div className="line-dec"></div>
 
                 <h4>
                   <i>
@@ -120,36 +126,36 @@ function AppEntry() {
                   </i>
                 </h4>
 
-                <div class="primary-button"></div>
+                <div className="primary-button"></div>
               </div>
             </div>
 
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="service-item">
+            <div className="col-md-8">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="service-item">
                     <h4>Number of Reviews Used</h4>
-                    <div class="line-dec"></div>
-                    <section class="numbers dark-blue-bg white-txt">
-                      <div class="marged flex">
-                        <div class="number-item">
+                    <div className="line-dec"></div>
+                    <section className="numbers dark-blue-bg white-txt">
+                      <div className="marged flex">
+                        <div className="number-item">
                           <h1>
-                            <span class="value">{appData.numberOfReviews}</span>
+                            <span className="value">{appData.numberOfReviews}</span>
                           </h1>
                         </div>
                       </div>
                     </section>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="service-item">
+                <div className="col-md-6">
+                  <div className="service-item">
                     <h4>Number of Patches Used</h4>
-                    <div class="line-dec"></div>
-                    <section class="numbers dark-blue-bg white-txt">
-                      <div class="marged flex">
-                        <div class="number-item">
+                    <div className="line-dec"></div>
+                    <section className="numbers dark-blue-bg white-txt">
+                      <div className="marged flex">
+                        <div className="number-item">
                           <h1>
-                            <span class="value">{appData.numberOfPatchs}</span>
+                            <span className="value">{appData.numberOfPatchs}</span>
                           </h1>
                         </div>
                       </div>
@@ -157,10 +163,10 @@ function AppEntry() {
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="service-item">
+                <div className="col-md-6">
+                  <div className="service-item">
                     <h4>Sentiment Distribution</h4>
-                    <div class="line-dec"></div>
+                    <div className="line-dec"></div>
                     <a href={appData.sentimentPieChart} data-lightbox="image-1">
                       <img src="static/img/piechart2.jpg" alt="" />
                     </a>
@@ -170,10 +176,10 @@ function AppEntry() {
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="service-item">
+                <div className="col-md-6">
+                  <div className="service-item">
                     <h4>Ratings Distribution</h4>
-                    <div class="line-dec"></div>
+                    <div className="line-dec"></div>
                     <a href={appData.ratingsPieChart} data-lightbox="image-1">
                       <img src="static/img/piechart1.jpg" alt="" />
                     </a>
@@ -184,10 +190,10 @@ function AppEntry() {
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="service-item">
+                <div className="col-md-6">
+                  <div className="service-item">
                     <h4>Issue Distribution</h4>
-                    <div class="line-dec"></div>
+                    <div className="line-dec"></div>
                     <a href={appData.issuesBarChart} data-lightbox="image-1">
                       <img src="static/img/pirechart9.jpg" alt="" />
                     </a>
@@ -198,10 +204,10 @@ function AppEntry() {
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="service-item">
+                <div className="col-md-6">
+                  <div className="service-item">
                     <h4>Major Bugs Identified</h4>
-                    <div class="line-dec"></div>
+                    <div className="line-dec"></div>
                     <a href={appData.issuesPieChart} data-lightbox="image-1">
                       <img src="static/img/bargraph.jpg" alt="" />
                     </a>
