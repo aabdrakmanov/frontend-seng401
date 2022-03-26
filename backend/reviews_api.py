@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'newrootpassword'
 app.config['MYSQL_DB'] = 'applytics'
 
 CORS(app)
@@ -34,7 +34,7 @@ def addReview():
     mysql.connection.commit()
     cur.close()
 
-    return jsonify({"status":"success"}), 200
+    return jsonify({"status":"success"}), 201
 
 @app.route('/getReview', methods = ['GET'])
 def getReview():

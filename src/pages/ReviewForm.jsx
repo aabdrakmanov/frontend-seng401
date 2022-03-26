@@ -6,16 +6,27 @@ import UserContext from '../context/UserContext'
 import userEvent from '@testing-library/user-event'
 function ReviewForm() {
   const navigate = useNavigate()
-  const {user} = useContext(UserContext)
+  const axios = require('axios')
   const [formInput,setFormInput] = useState({
       app: "",
       review: ""
   })
   const [error,setError] = useState(null)
-  const onSubmit = (e)=>{
+  const onSubmit = async (e)=>{
       e.preventDefault()
       if(formInput.app.length === 0 || formInput.review.length === 0){
           setError("Neither field can be empty")
+      }
+      try{
+     const response = await axios.post("http://127.0.0.1:5000/addReview",{app:formInput.app,review:formInput.review,username:localStorage.getItem("username")})
+      if(response.status === 201){
+        setError("Review sent successfuly")
+        window.location.reload()
+      }
+      }
+      catch(error){
+        console.log(error)
+        setError("Something went wrong went submitting review")
       }
     
 
