@@ -188,3 +188,7 @@ def generateAnalytcis():
     plt.xlabel("Number of complaints",fontweight ='bold')
     plt.ylabel("Topics for Negative Reviews",fontweight ='bold')
     plt.show()
+
+
+if __name__ == '__main__':
+      app.run(port=5010)

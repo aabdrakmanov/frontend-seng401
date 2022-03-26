@@ -119,4 +119,4 @@ def deleteReview():
     return jsonify({"status": "success"}), 200
   
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5020)
