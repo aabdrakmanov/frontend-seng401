@@ -25,69 +25,71 @@ mysql = MySQL(app)
 def displayResult():
     # result,continuation_token= reviews('com.Slack',lang='en',country='us',sort=Sort.MOST_RELEVANT, count=1000)
 
-summary = df['Summary'][0]
-numPatches = df['numberOfPatches'][0]
-numReviews = df['NumberOfReviews'][0]
+    company = request.args.get('company')
+    print("result page")
+    print(company)
+    df = pd.read_csv ('roxy\\app_reviews_slack.csv')
 
-issue1=[]
-issue2=[]
-issue3=[]
-issue4=[]
+    summary = df['Summary'][0]
+    numPatches = df['numberOfPatches'][0]
+    numReviews = df['NumberOfReviews'][0]
 
-my_formatter = "{0:.2f}"
-for i in range(len(df['processed_review'])):
-  
-  if(df['issue1'][i]>df['issue2'][i] and df['issue1'][i]>df['issue2'][i] and df['issue3'][i]>df['issue4'][i]):
-    issue1.append({"negativeReviews": df['processed_review'][i], "scores": my_formatter.format(df['issue1'][i]*100)})
-  elif(df['issue2'][i]>df['issue1'][i] and df['issue2'][i]>df['issue3'][i] and df['issue2'][i]>df['issue4'][i]):
-    issue2.append({"negativeReviews": df['processed_review'][i], "scores": my_formatter.format(df['issue2'][i]*100)})
-  elif(df['issue3'][i]>df['issue1'][i] and df['issue3'][i]>df['issue2'][i] and df['issue3'][i]>df['issue4'][i]):
-    issue3.append({"negativeReviews": df['processed_review'][i], "scores": my_formatter.format(df['issue3'][i]*100)})
-  else:
-    issue4.append({"negativeReviews": df['processed_review'][i], "scores": my_formatter.format(df['issue4'][i]*100), "topic": df['Status'][3]})
+    issue1=[]
+    issue2=[]
+    issue3=[]
+    issue4=[]
 
-issue1[:] = [x for x in issue1 if float(x['scores']) >= 70.0]
-issue2[:] = [x for x in issue2 if float(x['scores']) >= 70.0]
-issue3[:] = [x for x in issue3 if float(x['scores']) >= 70.0]
-issue4[:] = [x for x in issue4 if float(x['scores']) >= 70.0]
+    my_formatter = "{0:.2f}"
+    for i in range(len(df['processed_review'])):
+        
+        if(df['issue1'][i]>df['issue2'][i] and df['issue1'][i]>df['issue2'][i] and df['issue3'][i]>df['issue4'][i]):
+            issue1.append({"negativeReviews": df['processed_review'][i], "scores": my_formatter.format(df['issue1'][i]*100)})
+        elif(df['issue2'][i]>df['issue1'][i] and df['issue2'][i]>df['issue3'][i] and df['issue2'][i]>df['issue4'][i]):
+            issue2.append({"negativeReviews": df['processed_review'][i], "scores": my_formatter.format(df['issue2'][i]*100)})
+        elif(df['issue3'][i]>df['issue1'][i] and df['issue3'][i]>df['issue2'][i] and df['issue3'][i]>df['issue4'][i]):
+            issue3.append({"negativeReviews": df['processed_review'][i], "scores": my_formatter.format(df['issue3'][i]*100)})
+        else:
+            issue4.append({"negativeReviews": df['processed_review'][i], "scores": my_formatter.format(df['issue4'][i]*100), "topic": df['Status'][3]})
 
-issue1 = sorted(issue1, key=lambda d: d['scores'], reverse = True) 
-issue2 = sorted(issue2, key=lambda d: d['scores'], reverse = True) 
-issue3 = sorted(issue3, key=lambda d: d['scores'], reverse = True) 
-issue4 = sorted(issue4, key=lambda d: d['scores'], reverse = True) 
+    issue1[:] = [x for x in issue1 if float(x['scores']) >= 70.0]
+    issue2[:] = [x for x in issue2 if float(x['scores']) >= 70.0]
+    issue3[:] = [x for x in issue3 if float(x['scores']) >= 70.0]
+    issue4[:] = [x for x in issue4 if float(x['scores']) >= 70.0]
 
-issue1split = np.array_split(issue1, 4)
-issue2split = np.array_split(issue2, 4)
-issue3split = np.array_split(issue3, 4)
-issue4split = np.array_split(issue4, 4)
+    issue1 = sorted(issue1, key=lambda d: d['scores'], reverse = True) 
+    issue2 = sorted(issue2, key=lambda d: d['scores'], reverse = True) 
+    issue3 = sorted(issue3, key=lambda d: d['scores'], reverse = True) 
+    issue4 = sorted(issue4, key=lambda d: d['scores'], reverse = True) 
 
-mainResult=[]
-for i in range(4):
-  result=[]
-  result.append({"topic": df['Status'][0], "reviews": issue1split[3-i]})
-  result.append({"topic": df['Status'][1], "reviews": issue2split[3-i]})
-  result.append({"topic": df['Status'][2], "reviews": issue3split[3-i]})
-  result.append({"topic": df['Status'][3], "reviews": issue4split[3-i]})
-  mainResult.append(result)
+    issue1split = np.array_split(issue1, 4)
+    issue2split = np.array_split(issue2, 4)
+    issue3split = np.array_split(issue3, 4)
+    issue4split = np.array_split(issue4, 4)
 
-issues = []
-status=[]
+    mainResult=[]
+    for i in range(4):
+        result=[]
+        result.append({"topic": df['Status'][0], "reviews": issue1split[3-i]})
+        result.append({"topic": df['Status'][1], "reviews": issue2split[3-i]})
+        result.append({"topic": df['Status'][2], "reviews": issue3split[3-i]})
+        result.append({"topic": df['Status'][3], "reviews": issue4split[3-i]})
+        mainResult.append(result)
 
-for i in range(4):
-  issues.append(df['issueName'][i])
-  status.append(df['Status'][i])
+    issues = []
+    status=[]
 
-result = {}
-result["numberOfReviews"] = numReviews
-result["numberOfPatches"] = numPatches
-result["Summary"] = summary
-result["timePeriod"] = mainResult
-result["Bugs"] = {"issues": issues, "Status": status} 
+    for i in range(4):
+        issues.append(df['issueName'][i])
+        status.append(df['Status'][i])
 
-    # return render_template('resultDeveloper.html')
+    result = {}
+    result["numberOfReviews"] = numReviews
+    result["numberOfPatches"] = numPatches
+    result["Summary"] = summary
+    result["timePeriod"] = mainResult
+    result["Bugs"] = {"issues": issues, "Status": status} 
 
-return jsonify(result), 200
-
+    return jsonify(result), 200
 
 def get_sentiment_score(text):
   tokens = tokenizer.encode(text, return_tensors='pt')
