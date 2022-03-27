@@ -19,8 +19,6 @@ function About() {
 
       <div className="container">
         <h1>Appalytics</h1>
-        <h1>{data.name}</h1>
-        <h1>{data.major}</h1>
         <p className="text-start">
           Our web app is an analysis of application reviews and sentiment from
           Google Play Store and Twitter. We plan on using machine learning to
