@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels:
+    name: mysql-pod
+    app: applytics
+spec:
+    containers: 
+        - name: mysql
+          image: mysql:8.0
+          ports:
+          - containerPort: 3306        

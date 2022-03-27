@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review-gke
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: applytics
+  template:
+    metadata:
+      labels:
+        app: applytics
+    spec:
+      containers:
+      - name: review
+        image: us-west1-docker.pkg.dev/seng401-applytics-345306/review-repo/review-gke
+        ports:
+        - containerPort: 65534
+        env:
+          - name: PORT
+            value: "65534"

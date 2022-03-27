@@ -32,7 +32,7 @@ function Reviews() {
       return
     }
     try{
-    const response = await axios.get("http://127.0.0.1:5000/getReviewApp", {
+    const response = await axios.get("http://127.0.0.1:5020/getReviewApp", {
       params: {
         app : appText
       }
@@ -53,7 +53,7 @@ function Reviews() {
   const getAllReviews = async ()=>{
     try{
     setOption("all")
-    const response = await axios.get("http://127.0.0.1:5000/getReview")
+    const response = await axios.get("http://127.0.0.1:5020/getReview")
     console.log(response.data)
     if(isMounted.current){
     setReviewArray(response.data)
@@ -88,7 +88,7 @@ function Reviews() {
     const id = +e.target.value
     try{
   
-      await axios.put("http://127.0.0.1:5000/editReview", {
+      await axios.put("http://127.0.0.1:5020/editReview", {
           ID:id,
           newReview:editText
         
@@ -126,7 +126,7 @@ function Reviews() {
   const deleteReview = async (e)=>{
     let deletedID = +e.target.value
     try{
-    await axios.delete("http://127.0.0.1:5000/deleteReview", {
+    await axios.delete("http://127.0.0.1:5020/deleteReview", {
       data: {
         ID: deletedID
       }

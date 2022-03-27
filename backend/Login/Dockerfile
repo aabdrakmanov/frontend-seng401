@@ -5,11 +5,13 @@ FROM python:3.10.3
 # Copy local code to the container image.
 ENV LOGIN /login
 WORKDIR $LOGIN
+
+RUN pip install django
+RUN pip install flask-mysqldb
+COPY requirements.txt requirements.txt
+RUN pip install -r ./requirements.txt
 COPY . ./
 
-# Install production dependencies.
-RUN pip install -r ./requirements.txt
+ENV FLASK_APP=login_api.py
 
-
-CMD ["set","FLASK_APP=login_api.py"]
-CMD ["flask","run"]
+CMD ["python3","-m","flask","run"]
