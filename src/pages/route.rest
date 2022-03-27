@@ -9,8 +9,30 @@ POST https://api-login-401.herokuapp.com/login
 Content-Type: application/json
 
 { 
-    "email":"amir@gmail.com",
+    "email":"amidr@gmail.com",
     "password":"123"
+
+
+}
+###
+POST https://api-login-401.herokuapp.com/signup
+Content-Type: application/json
+
+{ 
+    "email":"keqing@gmail.com",
+    "password":"password",
+    "username": "keqing"
+
+
+}
+###
+POST https://api-401-reviews.herokuapp.com/addReview
+Content-Type: application/json
+
+{ 
+    "app": "fate go",
+    "username": "keqing",
+    "review": "greatest game ever"
 
 
 }

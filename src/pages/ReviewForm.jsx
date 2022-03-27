@@ -19,7 +19,7 @@ function ReviewForm({setAdd,getAllReviews,getPerUser,option,searchApp}) {
           return
       }
       try{
-     const response = await axios.post("http://127.0.0.1:5020/addReview",{app:formInput.app,review:formInput.review,username:localStorage.getItem("username")})
+     const response = await axios.post("https://api-401-reviews.herokuapp.com/addReview",{app:formInput.app,review:formInput.review,username:localStorage.getItem("username")})
       if(response.status === 201){
         setError("Review sent successfuly")
         setAdd(false)

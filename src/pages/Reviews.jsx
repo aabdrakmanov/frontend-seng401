@@ -35,7 +35,7 @@ function Reviews() {
       return
     }
     try{
-    const response = await axios.get("http://127.0.0.1:5020/getReviewApp", {
+    const response = await axios.get("https://api-401-reviews.herokuapp.com/getReviewApp", {
       params: {
         app : appText
       }
@@ -56,7 +56,7 @@ function Reviews() {
   const getAllReviews = async ()=>{
     try{
     setOption("all")
-    const response = await axios.get("http://127.0.0.1:5020/getReview")
+    const response = await axios.get("https://api-401-reviews.herokuapp.com/getReview")
     console.log(response.data)
     if(isMounted.current){
     setReviewArray(response.data)
@@ -73,7 +73,7 @@ function Reviews() {
   const getPerUser = async ()=>{
     setOption("user")
     try{
-    const response = await axios.get("http://127.0.0.1:5020/getReviewUser", {
+    const response = await axios.get("https://api-401-reviews.herokuapp.com/getReviewUser", {
       params: {username:localStorage.getItem("username")}
     })
     if(isMounted.current){
@@ -105,7 +105,7 @@ function Reviews() {
     const id = +e.target.value
     try{
   
-      await axios.put("http://127.0.0.1:5020/editReview", {
+      await axios.put("https://api-401-reviews.herokuapp.com/editReview", {
           ID:id,
           newReview:editText
         
@@ -143,7 +143,7 @@ function Reviews() {
   const deleteReview = async (e)=>{
     let deletedID = +e.target.value
     try{
-    await axios.delete("http://127.0.0.1:5020/deleteReview", {
+    await axios.delete("https://api-401-reviews.herokuapp.com/deleteReview", {
       data: {
         ID: deletedID
       }
