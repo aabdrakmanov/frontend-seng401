@@ -201,8 +201,8 @@ function Reviews() {
           <tr>
             <th scope="col">ID</th>
             <th scope="col">App name</th>
-            <th scope="col">Review</th>
-            <th scope = "col">Username</th>
+            <th scope="col">Username</th>
+            <th scope = "col">Review</th>
             
           </tr>
         </thead>
@@ -216,8 +216,10 @@ function Reviews() {
              <td><input onChange = {changeEditText} value = {editText}></input></td>
              
              }
-              {((ireview.username === localStorage.getItem("username") && edited === null) || edited !== ireview.ID) ?( <td><button value = {ireview.ID} onClick = {editButton}className='btn btn-warning'>Edit Review</button></td>):
-              (<td><button value = {ireview.ID} onClick = {saveEdit}className='btn btn-warning'>Save</button></td>)}
+              {(ireview.username === localStorage.getItem("username") && (
+                edited !== ireview.ID ? (<td><button value = {ireview.ID} onClick = {editButton}className='btn btn-warning'>Edit Review</button></td>):
+                (<td><button value = {ireview.ID} onClick = {saveEdit}className='btn btn-warning'>Save</button></td>)
+              )) }
               {ireview.username === localStorage.getItem("username") && <td><button value = {ireview.ID}onClick = {deleteReview} className='btn btn-primary'>Delete Review</button></td>}
               
             </tr>
