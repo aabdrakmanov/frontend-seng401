@@ -22,6 +22,7 @@ import snapchat from "../static/img/photo-7.jpg"
 function ViewApps() {
     useEffect(()=>{
     let reloads = sessionStorage.getItem('reloads');
+    let isMounted = true
     if(reloads >= 1) {
         sessionStorage.removeItem('reloads');
       

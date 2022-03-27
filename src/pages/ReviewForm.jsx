@@ -48,9 +48,7 @@ function ReviewForm({setAdd,getAllReviews,getPerUser,option,searchApp}) {
     setFormInput((oldState)=>{
         return {...oldState,[e.target.id]:e.target.value}})
   }
-  if(localStorage.getItem("username") === null){
-    return <><Navbar/> <div>You arent logged in</div> </>
-}
+  
   return (
     <>
     <div class="container">

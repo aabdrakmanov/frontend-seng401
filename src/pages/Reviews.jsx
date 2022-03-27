@@ -5,6 +5,7 @@ import axios from "axios";
 import ReviewForm from './ReviewForm';
 
 function Reviews() {
+
   const isMounted = useRef(true)
   const [reviewArray,setReviewArray] = useState([])
   const [option,setOption] = useState("all")
@@ -152,6 +153,9 @@ function Reviews() {
     
     return () => { isMounted.current = false }
   },[])
+  if(localStorage.getItem("username") === null){
+    return <><Navbar/> <div>You arent logged in</div> </>
+}
   return (
    <><Navbar /><div className="container mt-2">
      
