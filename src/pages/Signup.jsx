@@ -33,7 +33,7 @@ function Signup() {
     } else {
       
       try{
-      const data2 = await axios.post("http://localhost:5000/signup",
+      const data2 = await axios.post("https://api-login-401.herokuapp.com/signup",
      {username:registerInfo.username,email: registerInfo.email, password: registerInfo.password})
         console.log(data2)
        

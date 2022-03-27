@@ -19,7 +19,7 @@ function Login() {
     
     //probably needs something to validate the login first
     try{
-        const data2 = await axios.post("http://localhost:5000/login",{email:loginInfo.email,password:loginInfo.password})
+        const data2 = await axios.post("https://api-login-401.herokuapp.com/login",{email:loginInfo.email,password:loginInfo.password})
            console.log(data2)
 
     if (data2.status === 200) {
