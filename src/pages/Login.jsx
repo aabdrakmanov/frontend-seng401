@@ -74,7 +74,7 @@ catch {
                 <div className="form signin">
                     <div className="input-group">
                         <i className='bx bxs-user'></i>
-                        <input onChange = {setInput} type="text" name="inputName" id="email" className="form-control" value = {loginInfo.email} placeholder="Username" autoFocus=""/>
+                        <input onChange = {setInput} type="text" name="inputName" id="email" className="form-control" value = {loginInfo.email} placeholder="Email" autoFocus=""/>
                     </div>
                     <div className="input-group">
                         <i className='bx bxs-lock-alt'></i>

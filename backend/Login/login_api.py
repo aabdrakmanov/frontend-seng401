@@ -41,12 +41,14 @@ def signup():
     result = {"username": name, "email": email, "password": password, "company": company}
     
     response = requests.post("http://localhost:5000/signupStoreDB", json=result)
-
+    
     print(response.status_code)
-
     if response.status_code == 201:
-        return jsonify(result),201
-
+        response = requests.post("http://localhost:5000/login", json=result)
+        if response.status_code == 200:
+            return jsonify(result),201
+        else:
+            return jsonify({"status":"failed"}),401
     else:
         return jsonify({"status":"failed"}),401
     
@@ -85,7 +87,6 @@ def signin():
     print("signin")
 
     print(request.json)
-      
     email = request.json["email"]
     password = request.json["password"]
     print("email is " + str(email))
