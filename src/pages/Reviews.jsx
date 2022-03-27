@@ -27,7 +27,10 @@ function Reviews() {
   }
   const searchApp = async (e)=>{
     setOption("app")
+    console.log("called")
+    if(e !== undefined){
     e.preventDefault()
+    }
     if(appText.length == 0){
       return
     }

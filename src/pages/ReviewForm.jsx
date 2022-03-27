@@ -26,7 +26,7 @@ function ReviewForm({setAdd,getAllReviews,getPerUser,option,searchApp}) {
         if(option === "all"){
           getAllReviews()
         }
-        else if(option == "user"){
+        else if(option === "user"){
           getPerUser()
         }
         else {
