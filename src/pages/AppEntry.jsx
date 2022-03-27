@@ -25,7 +25,7 @@ function AppEntry() {
   useEffect(()=>{
     let isMounted = true;
     const fetchData = async()=>{
-      const data =  await fetch(`https://api-401-ml.herokuapp.com//devResult?company=${a}`).then((response)=> response.json())
+      const data =  await fetch(`https://api-401-ml.herokuapp.com/devResult?company=${a}`).then((response)=> response.json())
       if(isMounted){
       console.log(data)
       setData(data)
