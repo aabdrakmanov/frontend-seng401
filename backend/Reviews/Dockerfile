@@ -12,6 +12,4 @@ COPY requirements.txt requirements.txt
 RUN pip install -r ./requirements.txt
 COPY . ./
 
-ENV FLASK_APP=reviews_api.py
-
-CMD ["python3","-m","flask","run"]
+CMD ["python3","reviews_api.py"]
