@@ -42,7 +42,7 @@ def getReview():
     # retrieve from database
 
     cur = mysql.connection.cursor()
-    result = cur.execute("""SELECT R.app, R.reviewID, R.review FROM REVIEWS AS R""")
+    result = cur.execute("""SELECT R.app, R.reviewID, R.review,R.username FROM REVIEWS AS R""")
 
     if(result<=0):
         return jsonify({"status": "failed"}), 500
@@ -54,7 +54,7 @@ def getReview():
 
         for row in rows:
 
-            myResult.append({"ID":row[1], "app": row[0], "review": row[2]})
+            myResult.append({"ID":row[1], "app": row[0], "review": row[2],"username":row[4]})
 
         return jsonify(myResult), 200
 
@@ -80,6 +80,30 @@ def getReviewApp():
         for row in rows:
 
             myResult.append({"ID":row[0], "review": row[1], "app": app})
+
+        return jsonify(myResult), 200
+
+@app.route('/getReviewUser', methods = ['GET'])
+def getReviewUser():
+    
+    username= request.args['user']
+
+    # retrieve from database
+
+    cur = mysql.connection.cursor()
+    result = cur.execute("""SELECT R.reviewID, R.review,R.app FROM REVIEWS AS R WHERE R.username=%s""",(app,))
+
+    if(result<=0):
+        return jsonify({"status": "failed"}), 500
+
+    else:
+
+        rows = cur.fetchall()
+        myResult = []
+
+        for row in rows:
+
+            myResult.append({"ID":row[0], "review": row[1], "app": row[2], "username":username})
 
         return jsonify(myResult), 200
 

@@ -69,6 +69,20 @@ function Reviews() {
   }
   const getPerUser = async ()=>{
     setOption("user")
+    try{
+    const response = await axios.get("http://127.0.0.1:5020/getReviewUser", {
+      params: {username:localStorage.getItem("username")}
+    })
+    if(isMounted.current){
+      setReviewArray(response.data)
+    }
+  }
+    catch(error){
+      console.log(error)
+      if(isMounted.current){
+      setReviewArray([])
+      }
+    }
 
   }
   const addReview = async ()=>{
@@ -188,6 +202,7 @@ function Reviews() {
             <th scope="col">ID</th>
             <th scope="col">App name</th>
             <th scope="col">Review</th>
+            <th scope = "col">Username</th>
             
           </tr>
         </thead>
@@ -196,14 +211,14 @@ function Reviews() {
               <tr key = {ireview.ID}>
               <th scope="row">{ireview.ID}</th>
               <td>{ireview.app}</td>
-              
+              <td>{ireview.username}</td>
              {edited !== ireview.ID ? (<td>{ireview.review}</td>) :
              <td><input onChange = {changeEditText} value = {editText}></input></td>
              
              }
-              {((true && edited) === null || edited !== ireview.ID) ?( <td><button value = {ireview.ID} onClick = {editButton}className='btn btn-warning'>Edit Review</button></td>):
+              {((ireview.username === localStorage.getItem("username") && edited === null) || edited !== ireview.ID) ?( <td><button value = {ireview.ID} onClick = {editButton}className='btn btn-warning'>Edit Review</button></td>):
               (<td><button value = {ireview.ID} onClick = {saveEdit}className='btn btn-warning'>Save</button></td>)}
-              {true && <td><button value = {ireview.ID}onClick = {deleteReview} className='btn btn-primary'>Delete Review</button></td>}
+              {ireview.username === localStorage.getItem("username") && <td><button value = {ireview.ID}onClick = {deleteReview} className='btn btn-primary'>Delete Review</button></td>}
               
             </tr>
           ))
