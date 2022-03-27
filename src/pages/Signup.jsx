@@ -36,16 +36,18 @@ function Signup() {
       const data2 = await axios.post("http://localhost:5000/signup",
      {username:registerInfo.username,email: registerInfo.email, password: registerInfo.password})
         console.log(data2)
-        if(isMounted.current){
+       
         login(data2.data)
-        }
+        
         
     navigate("/loggedin");
       
     }
     catch(error){
       console.log(error)
+      if(isMounted){
       setError("invalid sign up")
+      }
     }
       
     }
