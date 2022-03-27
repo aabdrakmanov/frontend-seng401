@@ -54,14 +54,14 @@ function Signup() {
     return ()=> {isMounted.current = false}
   })
   const setInput = (e) => {
-    if(isMounted.current){
+ 
     setRegisterInfo((oldState) => {
       return {
         ...oldState,
         [e.target.id]: e.target.value,
       }
     })
-  }
+  
   }
   if(localStorage.getItem("username") !== null){
     return <><Navbar/> <div>You are already logged in</div> </>

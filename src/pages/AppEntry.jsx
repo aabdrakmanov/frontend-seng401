@@ -669,7 +669,7 @@ function AppEntry() {
               </tr>
             </thead>
             <tbody>
-              {localStorage.getItem("company") !== a && formatBugs.map((bug)=>(
+              {localStorage.getItem("company") === a && formatBugs.map((bug)=>(
                 <tr>
                 <td>{bug.issue}</td>
                 <td>{bug.status}</td>

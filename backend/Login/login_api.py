@@ -109,7 +109,7 @@ def signin():
                 print("user is " +str(user[0]))
                 return jsonify({'username': user[0], "email":user[1], "password":user[2]}), 200
 
-    return jsonify({'error':'No valid account found!'}), 200
+    return jsonify({'error':'No valid account found!'}), 401
    
    
 
