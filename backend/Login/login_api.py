@@ -11,7 +11,7 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = '34.83.4.245'
+app.config['MYSQL_HOST'] = '35.199.186.226'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'seng401'
 app.config['MYSQL_DB'] = 'applytics'
@@ -40,7 +40,7 @@ def signup():
 
     result = {"username": name, "email": email, "password": password, "company": company}
     
-    response = requests.post("http://127.0.0.1:5000/signupStoreDB", json=result)
+    response = requests.post("http://localhost:5000/signupStoreDB", json=result)
 
     print(response.status_code)
 
@@ -123,4 +123,5 @@ def getSiginDB():
     
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    print("Version: 1.0");
+    app.run(host=os.getenv('IP','0.0.0.0'), port=int(os.getenv('PORT',5000)))

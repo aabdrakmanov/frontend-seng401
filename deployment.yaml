@@ -14,30 +14,18 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: us-west1-docker.pkg.dev/seng401-applytics/frontend-repo/frontend-gke
+        image: us-west1-docker.pkg.dev/seng401-applytics-345306/frontend-repo/frontend-gke:latest
         ports:
         - containerPort: 3000
-        env:
-          - name: PORT
-            value: "3000"
       - name: login
-        image: us-west1-docker.pkg.dev/seng401-applytics/login-repo/login-gke
+        image: us-west1-docker.pkg.dev/seng401-applytics-345306/login-repo/login-gke:latest
         ports:
         - containerPort: 5000
-        env:
-          - name: PORT
-            value: "5000"
       - name: ml
-        image: us-west1-docker.pkg.dev/seng401-applytics/ml-repo/ml-gke
+        image: us-west1-docker.pkg.dev/seng401-applytics-345306/ml-repo/ml-gke:latest
         ports:
         - containerPort: 5010
-        env:
-          - name: PORT
-            value: "5010"
       - name: review
-        image: us-west1-docker.pkg.dev/seng401-applytics/review-repo/review-gke
+        image: us-west1-docker.pkg.dev/seng401-applytics-345306/review-repo/review-gke:latest
         ports:
         - containerPort: 5020
-        env:
-          - name: PORT
-            value: "5020"

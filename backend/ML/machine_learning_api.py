@@ -13,7 +13,7 @@ import numpy as np
 app = Flask(__name__)
 
 
-app.config['MYSQL_HOST'] = '34.83.4.245'
+app.config['MYSQL_HOST'] = '35.199.186.226'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'seng401'
 app.config['MYSQL_DB'] = 'applytics'
@@ -192,3 +192,5 @@ def generateAnalytcis():
 
 if __name__ == '__main__':
       app.run(port=5010)
+
+

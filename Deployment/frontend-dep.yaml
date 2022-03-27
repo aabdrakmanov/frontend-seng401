@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-gke
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: applytics
+  template:
+    metadata:
+      labels:
+        app: applytics
+    spec:
+      containers:
+      - name: frontend
+        image: us-west1-docker.pkg.dev/seng401-applytics-345306/frontend-repo/frontend-gke:latest
+        ports:
+        - containerPort: 3000
+        env:
+          - name: PORT
+            value: "3000"

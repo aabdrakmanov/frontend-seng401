@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login-gke
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: applytics
+  template:
+    metadata:
+      labels:
+        app: applytics
+    spec:
+      containers:
+      - name: login
+        image: us-west1-docker.pkg.dev/seng401-applytics-345306/login-repo/login-gke:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PORT
+            value: "5000"
