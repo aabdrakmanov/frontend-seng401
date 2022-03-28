@@ -36,7 +36,7 @@ const changeUserText = (e)=>{
     }
 
     const submitEmail = (e)=>{
-      if((emailText.length  == 0 || emailText == localStorage.getItem("email"))){
+      if((emailText.length  == 0 || emailText === localStorage.getItem("email"))){
         setError("New email cannot be blank or the same")
         return
       }
@@ -46,7 +46,7 @@ const changeUserText = (e)=>{
     }
 
     const submitUsername = (e)=>{
-      if((userText.length  == 0 || userText == localStorage.getItem("username"))){
+      if((userText.length  == 0 || userText === localStorage.getItem("username"))){
         setError("New username cannot be blank or the same")
         return
       }

@@ -5,8 +5,10 @@ function ConfirmPassword({option,newValue,setError,setOption}) {
     const[passwordText,setPasswordText] = useState("")
     const onSubmit = async(e)=>{
         e.preventDefault()
-        try{
-        if(option === "email"){
+        
+        if(option === "email")
+        {
+            try{
             await axios.put("https://api-login-401.herokuapp.com/changeEmail", {
                 username: localStorage.getItem("username"),
                 oldEmail: localStorage.getItem("email"),
@@ -16,22 +18,34 @@ function ConfirmPassword({option,newValue,setError,setOption}) {
             })
 
             localStorage.setItem("email",newValue)
+        }
+        catch(error){
+            setError("Either incorrect password was input or there's an error on the server")
+            return
+        }
            
         }
         else if(option === "password"){
-            axios.put("https://api-login-401.herokuapp.com/changePassword", {
+        try{
+           await axios.put("https://api-login-401.herokuapp.com/changePassword", {
                 username: localStorage.getItem("username"),
                 email: localStorage.getItem("email"),
                 newPassword: newValue,
                 oldPassword:passwordText
 
-            })
+            })}
+            catch(error){
+                setError("Either incorrect password was input or there's an error on the server")
+                return
+            }
          
 
 
         }
         else if(option === "username"){
-            axios.put("https://api-login-401.herokuapp.com/changeUsername", {
+            try{
+                console.log("ihe")
+            await axios.put("https://api-login-401.herokuapp.com/changeUsername", {
                 oldUsername: localStorage.getItem("username"),
                 email: localStorage.getItem("email"),
                 newUsername: newValue,
@@ -39,17 +53,20 @@ function ConfirmPassword({option,newValue,setError,setOption}) {
 
             })
             localStorage.setItem("username",newValue)
-         
+        }
+        catch(error){
+            console.log("buh")
+            setError("Either incorrect password was input or there's an error on the server")
+                return
+
+        }
 
         }
         setOption(null)
         setError("Updated performed successfully")
     }
-    catch(error){
-        setOption(null)
-        setError("something went wrong")
-    }
-    }
+   
+    
     const changePasswordText = (e)=>{
         setPasswordText(e.target.value)
     }
