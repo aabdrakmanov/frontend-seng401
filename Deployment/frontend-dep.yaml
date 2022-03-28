@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: us-west1-docker.pkg.dev/seng401-applytics-345306/frontend-repo/frontend-gke:latest
+        image: us-west1-docker.pkg.dev/applytics-frontend/frontend-repo/frontend-gke:latest
         ports:
         - containerPort: 3000
         env:
