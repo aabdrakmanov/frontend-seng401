@@ -10,7 +10,7 @@ function AppSearchItem({app}) {
        
         <img src = {app.img} style = {{width:`15%`,height:`25%`}}/>
         <div>
-            <h6>{app.name}</h6>
+            <h6 className='ms-2'>{app.name}</h6>
            
         </div>
         
