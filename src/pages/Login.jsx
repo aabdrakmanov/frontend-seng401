@@ -32,12 +32,12 @@ function Login() {
     if(isMounted.current){
       setError(true);
         }
-    }
+        
 }
 catch {
-    if(isMounted.current){
+    
     setError(true)
-    }
+    
 }
   };
   const setInput = (e) => {
