@@ -510,18 +510,6 @@
       ],
       "value": ""
     }, {
-      "id": "45e17600-b405-432f-b6ac-9da957e53ac7",
-      "comment": "",
-      "command": "assertText",
-      "target": "css=.col-md-12 > a:nth-child(1)",
-      "targets": [
-        ["css=.col-md-12 > a:nth-child(1)", "css:finder"],
-        ["xpath=//div[@id='root']/div/div/div[2]/div/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '/app/id')]", "xpath:href"],
-        ["xpath=//div[2]/div/a", "xpath:position"]
-      ],
-      "value": "App name\\nSome info"
-    }, {
       "id": "5f8b7dec-9c2e-49d8-98ae-be76072275cf",
       "comment": "",
       "command": "click",
