@@ -1,14 +1,17 @@
 import React from 'react'
+import {useState} from 'react'
 import {Link} from 'react-router-dom'
 function AppSearchItem({app}) {
+ const [url,setUrl] = useState(`/devResult?company=${app.name}`)
   return (
-    <Link to = "/app/id">
-    <div class = "mt-4 d-flex" style = {{width:`10%`,height:`20%`}}>
+  
+    <Link to = {url}>
+    <div class = "mt-4 d-flex" >
        
-        <img src = "https://o.qoo-img.com/ggpht/59Y11UN03Is138F70z_I_ZN_gc8yPNNUAlh5BKlQVl82Bw07FA30sO9LWWO9Cm8PF7o?w=192"/>
+        <img src = {app.img} style = {{width:`15%`,height:`25%`}}/>
         <div>
-            <h6>App name</h6>
-            <p>Some info</p>
+            <h6>{app.name}</h6>
+           
         </div>
         
     
