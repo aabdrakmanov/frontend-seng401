@@ -34,7 +34,7 @@ function ViewApps() {
     }},[])
     let [firefoximg,setf] = useState("https://techcrunch.com/wp-content/uploads/2018/07/logo-2.png?w=300")
     const navigate = useNavigate()
-    
+
 
     if(localStorage.getItem("username") === null){
         return <><Navbar/> <div>You arent logged in</div> </>

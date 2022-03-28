@@ -16,7 +16,7 @@ function Login() {
   const [error, setError] = useState(false);
   const onSubmit = async (e) => {
     e.preventDefault();
-    
+
     //probably needs something to validate the login first
     try{
         const data2 = await axios.post("https://api-login-401.herokuapp.com/login",{email:loginInfo.email,password:loginInfo.password})
@@ -24,25 +24,26 @@ function Login() {
 
     if (data2.status === 200) {
       //probably needs to set the state in the context
-      
       login(data2.data)
       navigate("/loggedin")
-      
+
     } else {
+    setError("Incorrect credentials");
     if(isMounted.current){
-      setError(true);
+      setError("Incorrect credentials");
         }
     }
+
 }
 catch {
     if(isMounted.current){
-    setError(true)
+    setError(true);
     }
 }
   };
   const setInput = (e) => {
     console.log("hi")
-   
+
     setLoginInfo((oldState) => {
       return {
         ...oldState,
@@ -54,18 +55,18 @@ catch {
   useEffect(()=>{
       return ()=>{isMounted.current = false}
   })
- 
+
   return (
     <>
-   
+
    <div id="container2" className="container2 signin">
-  
+
     <div className="row2">
         <div className="col2">
-           
+
         </div>
 
-        
+
         <div className="col2 align-items-center flex-col2 signin">
             <form action ="signin" onSubmit = {onSubmit}>
 
@@ -83,7 +84,7 @@ catch {
                     <button type = "submit">
                         Sign in
                     </button>
-                    {error && 
+                    {error &&
         <p className="invalid-login"> Invalid login info</p>}
                     <p>
                         <b>
@@ -98,7 +99,7 @@ catch {
                             Sign up here
                         </Link>
                     </p>
-                    
+
                 </div>
             </div>
         </form>
@@ -106,11 +107,11 @@ catch {
 
             </div>
         </div>
-        
+
     </div>
-    
+
     <div className="row2 content-row2">
-        
+
         <div className="col2 align-items-center flex-col2">
             <div className="text signin">
                 <h2>
@@ -122,16 +123,16 @@ catch {
 
             </div>
         </div>
-        
+
         <div className="col2 align-items-center flex-col2">
             <div className="img sign-up">
 
             </div>
-           
+
         </div>
-        
+
     </div>
-    
+
 </div>
     </>
   );

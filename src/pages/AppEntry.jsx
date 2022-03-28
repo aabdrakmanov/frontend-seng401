@@ -20,7 +20,7 @@ function AppEntry() {
     issuesPieChart:"../static/img/piechart2.jpg",
     timePeriod: [],
     Bugs: [{Issues:"bruh", Status: "bd"},{Issues:"s", Status: "kami"}]
-      
+
   })
   useEffect(()=>{
     let isMounted = true;
@@ -40,12 +40,12 @@ function AppEntry() {
     fetchData()
     return ()=>{isMounted = false}
   }
-  
+
   , [])
   if(localStorage.getItem("username") === null){
     return <><Navbar/> <div>You arent logged in</div> </>
 }
- 
+
 
   return (
     <>
@@ -234,9 +234,9 @@ function AppEntry() {
                   <h1>Graphs</h1>
                 <div>
                   <div>
-                 
+
                       <img src={appData.sentimentPieChart} alt="" />
-                    
+
                     <div>
                       <h4>Pie-Chart</h4>
                     </div>
@@ -244,9 +244,9 @@ function AppEntry() {
                 </div>
                 <div >
                   <div >
-                   
+
                       <img src={appData.issuesPieChart} alt="" />
-                   
+
                     <div >
                       <h4>Bar-Graph</h4>
                     </div>
@@ -677,7 +677,7 @@ function AppEntry() {
 
 
               }
-              
+
             </tbody>
           </table>
         </div>
