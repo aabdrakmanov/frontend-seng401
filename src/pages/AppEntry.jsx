@@ -155,7 +155,7 @@ function AppEntry() {
                       <div className="marged flex">
                         <div className="number-item">
                           <h1>
-                            <span className="value">{appData.numberOfPatchs}</span>
+                            <span className="value">{appData.numberOfPatches}</span>
                           </h1>
                         </div>
                       </div>
