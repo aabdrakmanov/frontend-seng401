@@ -11,6 +11,7 @@ import AppSearchResults from './pages/AppSearchResults';
 import ViewApps from './pages/ViewApps';
 import ReviewForm from './pages/ReviewForm';
 import Reviews from "./pages/Reviews"
+import UserProfile from './pages/UserProfile';
 function App() {
   return (
     <UserProvider>
@@ -26,6 +27,7 @@ function App() {
           <Route path = "/loggedin" element = {<ViewApps/>} />
           <Route path = "/createReview" element = {<ReviewForm/>}/>
           <Route path = "/reviews" element = {<Reviews/>}/>
+          <Route path = "/profile" element = {<UserProfile/>}/>
         </Routes>
    
       </Router>

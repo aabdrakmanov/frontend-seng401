@@ -8,12 +8,14 @@ export const UserProvider = ({ children }) => {
     console.log(userObject)
     localStorage.setItem('username',userObject.username)
     localStorage.setItem('company',userObject.company)
+    localStorage.setItem('email',userObject.email)
     console.log(localStorage.getItem('username'))
     
   };
   const logout = () => {
     localStorage.removeItem('username')
     localStorage.removeItem('company')
+    localStorage.removeItem("email")
   };
   return (
     <UserContext.Provider

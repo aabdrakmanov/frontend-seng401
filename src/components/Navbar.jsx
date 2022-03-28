@@ -89,7 +89,7 @@ function Navbar() {
                     {localStorage.getItem("username")}
                   </a>
                   <div className="dropdown-menu" aria-labelledby="triggerId">
-                    <Link className="dropdown-item" to="/">
+                    <Link className="dropdown-item" to="/profile">
                       Profile
                     </Link>
                     <Link className="dropdown-item" to="/">

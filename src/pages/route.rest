@@ -9,8 +9,8 @@ POST https://api-login-401.herokuapp.com/login
 Content-Type: application/json
 
 { 
-    "email":"amidr@gmail.com",
-    "password":"123"
+    "email":"username@slack.com",
+    "password":"password"
 
 
 }
@@ -19,7 +19,7 @@ POST https://api-login-401.herokuapp.com/signup
 Content-Type: application/json
 
 { 
-    "email":"keqing@gmail.com",
+    "email":"username@slack.com",
     "password":"password",
     "username": "keqing"
 
