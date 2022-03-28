@@ -2,6 +2,7 @@ import React from "react";
 import { useState,useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
+
 function Navbar() {
   //links need to be filled in
   //bool loggedin should probably take in some actual state from a context probably
@@ -9,7 +10,7 @@ function Navbar() {
   const navigate = useNavigate();
   const [formText, setFormText] = useState("");
   const [formOption, setFormOption] = useState("All");
-  const {user,logout} = useContext(UserContext)
+  const {logout} = useContext(UserContext)
   const searchFunction = () => {
     if(formText.length === 0){
       navigate("/");
@@ -48,7 +49,7 @@ function Navbar() {
                 Home
               </Link>
             </li>
-           {user && <><li className="nav-item">
+           {localStorage.getItem("username") !== null && <><li className="nav-item">
             <Link className="nav-link" to="/loggedin">
                 Apps
               </Link>
