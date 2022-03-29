@@ -36,6 +36,7 @@ function AppEntry() {
     "mobile/desktop app":3
   }
   const changeOption = (e)=>{
+    e.preventDefault()
     console.log(e)
     setOption(e.target.text)
 
@@ -373,23 +374,23 @@ function AppEntry() {
                   
                   <ul className="tabs clearfix" data-tabgroup="first-tab-group">
                     <li>
-                      <a onClick = {changeOption} href="javascript:void(0);" value = "1 month"  className={option === "1 month" ?"active": ""}>
+                      <a onClick = {changeOption} href="#our-story" value = "1 month"  className={option === "1 month" ?"active": ""}>
                         1 month
                       </a>
                     </li>
                     <li>
                      
-                      <a onClick = {changeOption} href="javascript:void(0);" value = "6 months"  className={option === "6 months" ?"active": ""}>6 months</a>
+                      <a onClick = {changeOption} href="#our-story" value = "6 months"  className={option === "6 months" ?"active": ""}>6 months</a>
                       
                     </li>
                     <li>
                       
-                      <a onClick = {changeOption} hhref="javascript:void(0);" value = "1 year"  className={option === "1 year" ?"active": ""}>1 year</a>
+                      <a onClick = {changeOption} href="#our-story" value = "1 year"  className={option === "1 year" ?"active": ""}>1 year</a>
                       
                     </li>
                     <li>
                      
-                      <a onClick = {changeOption} href="javascript:void(0);" value = "2 years+" className={option === "2 years+" ?"active": ""}>2 years+</a>
+                      <a onClick = {changeOption} href="#our-story"value = "2 years+" className={option === "2 years+" ?"active": ""}>2 years+</a>
                       
                     </li>
                   </ul>
