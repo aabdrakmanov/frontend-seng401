@@ -90,7 +90,7 @@ function AppEntry() {
           </li>{" "}
           <li className="nav-item">
             <a className="nav-link" href="#portfolio">
-              <span>Portfolio</span>
+              <span>Graphs</span>
             </a>
           </li>
           <li className="nav-item">
