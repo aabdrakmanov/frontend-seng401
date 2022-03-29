@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect,useState,useContext } from "react"
+import { useEffect,useState,useRef } from "react"
 import { useNavigate,Link,useSearchParams } from "react-router-dom";
 import "../static/css/templatemo-main.css";
 import UserContext from "../context/UserContext";
@@ -7,6 +7,7 @@ import UserContext from "../context/UserContext";
 import Navbar from "../components/Navbar";
 import { renderIntoDocument } from "react-dom/test-utils";
 function AppEntry() {
+  const isMounted = useRef
   const [searchParams] = useSearchParams()
   const a = (searchParams.get("company"))
   const [formatBugs,setFormatBugs] = useState([])
@@ -24,6 +25,7 @@ function AppEntry() {
     Bugs: [{Issues:"bruh", Status: "bd"},{Issues:"s", Status: "kami"}]
 
   })
+
   const [loading,setLoading] = useState(true);
   let timePeriodMapping = {
     "1 month":0,
@@ -309,8 +311,8 @@ function AppEntry() {
                       <main className="st_viewport">
                        
                     <table class = "x">
-   
-                    <h2 class = "a">Registration Issues</h2>
+                    
+                    <caption class = "a">Registration Issues</caption>
                     <tr >
                 <th >Review</th>
                 <th> Score </th>
@@ -327,7 +329,7 @@ function AppEntry() {
                       </table>
                       <table class = "x">
    
-                    <h2 class = "a">Interface Issues</h2>
+                    <caption class = "a">Interface Issues</caption>
                     <tr >
                 <th >Review</th>
                 <th> Score </th>
@@ -346,7 +348,7 @@ function AppEntry() {
                       </table>
                       <table class = "x">
    
-                    <h2 class = "a">Desktop/Mobile App Issues</h2>
+                    <caption class = "a">Desktop/Mobile App Issues</caption>
                     <tr >
                 <th >Review</th>
                 <th> Score </th>
@@ -366,7 +368,7 @@ function AppEntry() {
 
                       <table class = "x">
    
-          <h2 class = "a">Notification Issues</h2>
+          <caption class = "a">Notification Issues</caption>
    <tr >
 <th >Review</th>
 <th> Score </th>
