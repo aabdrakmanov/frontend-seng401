@@ -968,6 +968,12 @@ pre{
 .x td {
   padding:10px;
 }
+
+.stickydiv {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 5%;
+}
 /*	
 	Side Navigation Menu V2, RWD
 	===================

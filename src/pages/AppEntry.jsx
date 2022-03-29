@@ -319,7 +319,7 @@ function AppEntry() {
                     <table class = "x">
                     
                     <caption class = "a">{appData.timePeriod[timePeriodMapping[option]][0].topic}</caption>
-                    <thead>
+                    <thead className="stickydiv">
                     <tr >
                 <th >Review</th>
                 <th> Score </th>
@@ -338,7 +338,7 @@ function AppEntry() {
                       <table class = "x">
    
                     <caption class = "a">{appData.timePeriod[timePeriodMapping[option]][1].topic}</caption>
-                    <thead>
+                    <thead className="stickydiv">
                     <tr >
 
                 <th >Review</th>
@@ -360,7 +360,7 @@ function AppEntry() {
                       <table class = "x">
    
                     <caption class = "a">{appData.timePeriod[timePeriodMapping[option]][2].topic}</caption>
-                    <thead>
+                    <thead className="stickydiv">
                     <tr >
                      
                 <th >Review</th>
@@ -383,7 +383,7 @@ function AppEntry() {
                       <table class = "x">
    
           <caption class = "a">{appData.timePeriod[timePeriodMapping[option]][3].topic}</caption>
-          <thead>
+          <thead className="stickydiv">
    <tr >
 <th >Review</th>
 <th> Score </th>
