@@ -116,7 +116,7 @@ catch(error){
         <div className="col2 align-items-center flex-col2">
             <div className="text signin">
                 <h2>
-                    Applytics
+                    Appalytics
                 </h2>
 
             </div>
