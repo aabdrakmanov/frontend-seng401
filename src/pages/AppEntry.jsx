@@ -274,6 +274,28 @@ function AppEntry() {
                   qualitative bug detection and analysis over multiple time
                   frames
                 </p>
+                <ul className="tabs clearfix" data-tabgroup="first-tab-group">
+                    <li>
+                      <a onClick = {changeOption} href="#our-story" value = "1 month"  className={option === "1 month" ?"active": ""}>
+                        1 month
+                      </a>
+                    </li>
+                    <li>
+                     
+                      <a onClick = {changeOption} href="#our-story" value = "6 months"  className={option === "6 months" ?"active": ""}>6 months</a>
+                      
+                    </li>
+                    <li>
+                      
+                      <a onClick = {changeOption} href="#our-story" value = "1 year"  className={option === "1 year" ?"active": ""}>1 year</a>
+                      
+                    </li>
+                    <li>
+                     
+                      <a onClick = {changeOption} href="#our-story"value = "2 years+" className={option === "2 years+" ?"active": ""}>2 years+</a>
+                      
+                    </li>
+                  </ul>
                 <br />
                 <section id="first-tab-group" className="tabgroup">
                   <div id="tab1">
@@ -287,7 +309,7 @@ function AppEntry() {
                                 Negative Reviews
                               </div>
                               <div className="st_column _rank">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                
                                 Score
                               </div>
                             </div>
@@ -372,28 +394,7 @@ function AppEntry() {
                   </div>
                   
                   
-                  <ul className="tabs clearfix" data-tabgroup="first-tab-group">
-                    <li>
-                      <a onClick = {changeOption} href="#our-story" value = "1 month"  className={option === "1 month" ?"active": ""}>
-                        1 month
-                      </a>
-                    </li>
-                    <li>
-                     
-                      <a onClick = {changeOption} href="#our-story" value = "6 months"  className={option === "6 months" ?"active": ""}>6 months</a>
-                      
-                    </li>
-                    <li>
-                      
-                      <a onClick = {changeOption} href="#our-story" value = "1 year"  className={option === "1 year" ?"active": ""}>1 year</a>
-                      
-                    </li>
-                    <li>
-                     
-                      <a onClick = {changeOption} href="#our-story"value = "2 years+" className={option === "2 years+" ?"active": ""}>2 years+</a>
-                      
-                    </li>
-                  </ul>
+                  
                   <br />
                   <br />
                   <br />

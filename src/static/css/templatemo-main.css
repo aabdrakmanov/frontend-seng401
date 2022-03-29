@@ -929,7 +929,10 @@ pre{
   font-weight: bold;
 }
 .st_table_header .st_column{
-  
+  width: 75%;
+}
+.st_column {
+  max-width:72.15%;
 }
 /* ##  table */
 .st_table{
