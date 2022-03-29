@@ -46,7 +46,7 @@ function AppEntry() {
       const data =  await fetch(`https://api-401-ml.herokuapp.com/devResult?company=${a}`).then((response)=> response.json())
       if(isMounted){
       setData(data)
-      console.log(data.timePeriod)
+      console.log(data)
       let formatBugsCopy = []
       for(let i = 0; i< data.Bugs.Status.length;i++ ){
         formatBugsCopy.push({status: data.Bugs.Status[i], issue: data.Bugs.issues[i]})
@@ -235,21 +235,23 @@ function AppEntry() {
                   <h1>Graphs</h1>
                 <div>
                   <div>
-
-                      <img src={appData.sentimentPieChart} alt="" />
+                        <h4>Sentiment Pie Graph</h4>
+                      <img src={`${appData.sentimentPieChart}?raw=true`}alt="sentiment pie chart" />
 
                     <div>
-                      <h4>Pie-Chart</h4>
+                    <h4>Ratings Pie Graph</h4>
+                    <img src={`${appData.ratingsPieChart}?raw=true`} alt="sentiment pie chart" />
                     </div>
                   </div>
                 </div>
                 <div >
                   <div >
-
-                      <img src={appData.issuesPieChart} alt="" />
+                  <h4> Issues Pie Graph</h4>
+                      <img src={`${appData.issuesPieChart}?raw=true`} alt="issues pie chart" />
 
                     <div >
-                      <h4>Bar-Graph</h4>
+                      <h4>Issues Bar Graph</h4>
+                      <img src={`${appData.IssuesBarChart}?raw=true`} alt="issues pie chart" />
                     </div>
                   </div>
                 </div>
@@ -371,23 +373,23 @@ function AppEntry() {
                   
                   <ul className="tabs clearfix" data-tabgroup="first-tab-group">
                     <li>
-                      <a onClick = {changeOption} value = "1 month"  className={option === "1 month" ?"active": ""}>
+                      <a onClick = {changeOption} href="javascript:void(0);" value = "1 month"  className={option === "1 month" ?"active": ""}>
                         1 month
                       </a>
                     </li>
                     <li>
                      
-                      <a onClick = {changeOption} value = "6 months"  className={option === "6 months" ?"active": ""}>6 months</a>
-                     
-                    </li>
-                    <li>
-                      
-                      <a onClick = {changeOption} value = "1 year"  className={option === "1 year" ?"active": ""}>1 year</a>
+                      <a onClick = {changeOption} href="javascript:void(0);" value = "6 months"  className={option === "6 months" ?"active": ""}>6 months</a>
                       
                     </li>
                     <li>
+                      
+                      <a onClick = {changeOption} hhref="javascript:void(0);" value = "1 year"  className={option === "1 year" ?"active": ""}>1 year</a>
+                      
+                    </li>
+                    <li>
                      
-                      <a onClick = {changeOption} value = "2 years+" className={option === "2 years+" ?"active": ""}>2 years+</a>
+                      <a onClick = {changeOption} href="javascript:void(0);" value = "2 years+" className={option === "2 years+" ?"active": ""}>2 years+</a>
                       
                     </li>
                   </ul>
