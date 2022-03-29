@@ -35,6 +35,7 @@ function Signup() {
       try{
       const data2 = await axios.post("https://api-login-401.herokuapp.com/signup",
      {username:registerInfo.username,email: registerInfo.email, password: registerInfo.password})
+     
         console.log(data2)
        
         login(data2.data)

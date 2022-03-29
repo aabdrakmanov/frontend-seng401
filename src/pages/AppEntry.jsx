@@ -5,6 +5,7 @@ import "../static/css/templatemo-main.css";
 import UserContext from "../context/UserContext";
 
 import Navbar from "../components/Navbar";
+import { renderIntoDocument } from "react-dom/test-utils";
 function AppEntry() {
   const [searchParams] = useSearchParams()
   const a = (searchParams.get("company"))
@@ -23,6 +24,7 @@ function AppEntry() {
     Bugs: [{Issues:"bruh", Status: "bd"},{Issues:"s", Status: "kami"}]
 
   })
+  const [loading,setLoading] = useState(true);
   let timePeriodMapping = {
     "1 month":0,
     "6 months":1,
@@ -54,6 +56,7 @@ function AppEntry() {
 
       }
       setFormatBugs(formatBugsCopy)
+      setLoading(false)
     }
     }
     fetchData()
@@ -64,10 +67,13 @@ function AppEntry() {
   if(localStorage.getItem("username") === null){
     return <><Navbar/> <div>You arent logged in</div> </>
 }
-
+  if(loading){
+    return <div>Loading</div>
+  }
 
   return (
     <>
+ 
       <div className="fixed-side-navbar">
         <ul className="nav flex-column">
           <li className="nav-item">
@@ -297,101 +303,93 @@ function AppEntry() {
                     </li>
                   </ul>
                 <br />
-                <section id="first-tab-group" className="tabgroup">
-                  <div id="tab1">
-                    <div className="body2">
+              
+               
+                   
                       <main className="st_viewport">
-                        <div className="st_wrap_table" data-table_id="0">
-                          <header className="st_table_header">
-                            <h2>Registration Issues ({option})</h2>
-                            <div className="st_row">
-                              <div className="st_column _rank">
-                                Negative Reviews
-                              </div>
-                              <div className="st_column _rank">
-                                
-                                Score
-                              </div>
-                            </div>
-                          </header>
-                          <div className="st_table">
-                            {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][0].reviews.map((r)=>(
-                            <div className="st_row">
-                              <div className="st_column _rank">{r.negativeReviews}</div>
-                              <div className="st_column _rank">{r.scores}</div>
-                            </div>
+                       
+                    <table class = "x">
+   
+                    <h2 class = "a">Registration Issues</h2>
+                    <tr >
+                <th >Review</th>
+                <th> Score </th>
+                </tr>
+                  <tbody class = "f">
+                  {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][0].reviews.map((r)=>(
+                            <tr className="st_row">
+                              <td >{r.negativeReviews}</td>
+                              <td>{r.scores}</td>
+                            </tr>
                           ))}
-                          </div>
-                        </div>
-                        <div className="st_wrap_table" data-table_id="1">
-                          <header className="st_table_header">
-                            <h2>Interface Issues</h2>
-                            <div className="st_row">
-                              <div className="st_column _rank">
-                                Negative Reviews
-                              </div>
-                              <div className="st_column _rank">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                Score
-                              </div>
-                            </div>
-                          </header>
-                          <div className="st_table">
-                          {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][1].reviews.map((r)=>(
-                            <div className="st_row">
-                              <div className="st_column _rank">{r.negativeReviews}</div>
-                              <div className="st_column _rank">{r.scores}</div>
-                            </div>
+                       
+                      </tbody>
+                      </table>
+                      <table class = "x">
+   
+                    <h2 class = "a">Interface Issues</h2>
+                    <tr >
+                <th >Review</th>
+                <th> Score </th>
+                </tr>
+                  <tbody class = "c">
+                  {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][1].reviews.map((r)=>(
+                            <tr className="st_row">
+                              <td >{r.negativeReviews}</td>
+                              <td>{r.scores}</td>
+                            </tr>
                           ))}
-                          </div>
-                        </div>
-                        <div className="st_wrap_table" data-table_id="2">
-                          <header className="st_table_header">
-                            <h2>Desktop/Mobile App Issues</h2>
-                            <div className="st_row">
-                              <div className="st_column _rank">
-                                Negative Reviews
-                              </div>
-                              <div className="st_column _rank">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                Score
-                              </div>
-                            </div>
-                          </header>
-                          <div className="st_table">
-                          {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][2].reviews.map((r)=>(
-                            <div className="st_row">
-                              <div className="st_column _rank">{r.negativeReviews}</div>
-                              <div className="st_column _rank">{r.scores}</div>
-                            </div>
+                       
+                      </tbody>
+                      
+                      
+                      </table>
+                      <table class = "x">
+   
+                    <h2 class = "a">Desktop/Mobile App Issues</h2>
+                    <tr >
+                <th >Review</th>
+                <th> Score </th>
+                </tr>
+                  <tbody class = "d">
+                  {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][2].reviews.map((r)=>(
+                            <tr className="st_row">
+                              <td >{r.negativeReviews}</td>
+                              <td>{r.scores}</td>
+                            </tr>
                           ))}
-                          </div>
-                        </div>
-                        <div className="st_wrap_table" data-table_id="3">
-                          <header className="st_table_header">
-                            <h2>Notification Issues</h2>
-                            <div className="st_row">
-                              <div className="st_column _rank">
-                                Negative Reviews
-                              </div>
-                              <div className="st_column _rank">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                Score
-                              </div>
-                            </div>
-                          </header>
-                          <div className="st_table">
-                          {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][3].reviews.map((r)=>(
-                            <div className="st_row">
-                              <div className="st_column _rank">{r.negativeReviews}</div>
-                              <div className="st_column _rank">{r.scores}</div>
-                            </div>
-                          ))}
-                          </div>
-                        </div>
+                       
+                      </tbody>
+                      
+                      
+                      </table>
+
+                      <table class = "x">
+   
+          <h2 class = "a">Notification Issues</h2>
+   <tr >
+<th >Review</th>
+<th> Score </th>
+</tr>
+ <tbody class = "e">
+ {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][3].reviews.map((r)=>(
+           <tr className="st_row">
+             <td >{r.negativeReviews}</td>
+             <td>{r.scores}</td>
+           </tr>
+         ))}
+      
+     </tbody>
+     
+     
+     </table>
+
+                      
+
+                       
                       </main>
-                    </div>
-                  </div>
+                   
+                
                   
                   
                   
@@ -399,7 +397,7 @@ function AppEntry() {
                   <br />
                   <br />
                   <br />
-                </section>
+                
               </div>
             </div>
           </div>

@@ -894,77 +894,75 @@ pre{
 }
 
 /** Sticky table styles **/
+
+.x th{
+  color: white;
+  background: black;
+  border-color:white;
+}
+.t-wrap table, tr, td {
+    border: 1px inset black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
 .st_viewport{
-  background-color: rgb(62,148,236);
+  
   color: rgb(27,30,36);
   margin: 20px 0;
-}
-/* ###  Table wrap */
-.st_wrap_table{
-
-  margin-left: auto;
-  margin-right: auto;
+  overflow: auto;
   
+
 }
-/* ##   header */
-.st_table_header{
+.a {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
-  z-index: 1;
-  background-color: rgb(27,30,36);
+  background-color:black;
   color: rgb(220,220,220);
   font-weight: bold;
-}
-.st_table_header h2{
-  font-weight: 400;
-  margin: 0 20px;
-  padding: 20px 0 0;
+  font-size:1.5em;
+  padding: 0;
+  margin:0;
   
 }
-.st_table_header .st_row{
-  color: white;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: bold;
+
+.c {
+   background-color: rgb(255,115,0);
+  color: black;
 }
-.st_table_header .st_column{
-  width: 75%;
-}
-.st_column {
-  max-width:72.15%;
-}
-/* ##  table */
-.st_table{
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  text-align: left;
-  font-size: 15px;
-  
+.d {
+  background-color: rgba(168,189,4, .8);
+  color: black;
   
 }
-/* #   row */
-.st_row{
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 0;
+
+.c tr:nth-child(even){
+  background-color: rgba(0,0,0, .2);
+
 }
-.st_table .st_row:nth-child(even){
-  background-color: rgba(0,0,0, .1)
+.d tr:nth-child(even){
+  background-color: rgba(0,0,0, .2)
 }
-/* #   column */
-.st_column{
-  padding: 10px 20px;
+
+.e {
+  background-color: #21B6A8;
 }
+
+.e tr:nth-child(even){
+  background-color: rgba(0,0,0, .2)
+}
+
+.f {
+  background-color: #FF75D8
+}
+
+.f tr:nth-child(even){
+  background-color: rgba(0,0,0, .2)
+}
+
 
 /*	
 	Side Navigation Menu V2, RWD
