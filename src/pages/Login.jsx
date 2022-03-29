@@ -59,7 +59,7 @@ catch(error){
 
   return (
     <>
-
+    <Navbar></Navbar>
    <div id="container2" className="container2 signin">
 
     <div className="row2">

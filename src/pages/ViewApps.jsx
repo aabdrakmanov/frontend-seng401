@@ -1,29 +1,15 @@
 import React, { useEffect } from "react";
-import UserContext from "../context/UserContext";
+
 import { useContext, useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { Helmet } from "react-helmet";
+
 import AppSearchItem from "../components/AppSearchItem";
-import uber from "../static/img/uber.png";
-import twitch from "../static/img/twitch.jpg";
-import zeeshan from "../static/img/zeeshan.jpg";
-import minecraft from "../static/img/minecraft.png";
-import instagram from "../static/img/instagram.jpg";
-import disney from "../static/img/disney.jpg";
-import netflix from "../static/img/photo-2.jpg";
-import discord from "../static/img/discord.jpg";
-import amazon from "../static/img/photo-4.jpg";
-import firefox from "../static/img/firefox.jpg";
-import youtube from "../static/img/photo-9.jpg";
-import slack from "../static/img/photo-6.jpg";
-import snapchat from "../static/img/photo-7.jpg";
+
 
 function ViewApps() {
   
-  let [firefoximg, setf] = useState(
-    "https://techcrunch.com/wp-content/uploads/2018/07/logo-2.png?w=300"
-  );
+  
   const [option,setOption] = useState("all")
   const navigate = useNavigate();
   const [apps,useApps] = useState([

@@ -48,6 +48,7 @@ function AppEntry() {
   useEffect(()=>{
     let isMounted = true;
     const fetchData = async()=>{
+      try{
       const data =  await fetch(`https://api-401-ml.herokuapp.com/devResult?company=${a}`).then((response)=> response.json())
       if(isMounted){
       setData(data)
@@ -60,6 +61,11 @@ function AppEntry() {
       setFormatBugs(formatBugsCopy)
       setLoading(false)
     }
+  }
+  catch(error){
+    console.log(error)
+    setLoading(false)
+  }
     }
     fetchData()
     return ()=>{isMounted = false}
@@ -312,11 +318,13 @@ function AppEntry() {
                        
                     <table class = "x">
                     
-                    <caption class = "a">Registration Issues</caption>
+                    <caption class = "a">{appData.timePeriod[timePeriodMapping[option]][0].topic}</caption>
+                    <thead>
                     <tr >
                 <th >Review</th>
                 <th> Score </th>
                 </tr>
+                </thead>
                   <tbody class = "f">
                   {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][0].reviews.map((r)=>(
                             <tr className="st_row">
@@ -329,11 +337,14 @@ function AppEntry() {
                       </table>
                       <table class = "x">
    
-                    <caption class = "a">Interface Issues</caption>
+                    <caption class = "a">{appData.timePeriod[timePeriodMapping[option]][1].topic}</caption>
+                    <thead>
                     <tr >
+
                 <th >Review</th>
                 <th> Score </th>
                 </tr>
+                </thead>
                   <tbody class = "c">
                   {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][1].reviews.map((r)=>(
                             <tr className="st_row">
@@ -348,11 +359,14 @@ function AppEntry() {
                       </table>
                       <table class = "x">
    
-                    <caption class = "a">Desktop/Mobile App Issues</caption>
+                    <caption class = "a">{appData.timePeriod[timePeriodMapping[option]][2].topic}</caption>
+                    <thead>
                     <tr >
+                     
                 <th >Review</th>
                 <th> Score </th>
                 </tr>
+                </thead>
                   <tbody class = "d">
                   {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][2].reviews.map((r)=>(
                             <tr className="st_row">
@@ -368,11 +382,13 @@ function AppEntry() {
 
                       <table class = "x">
    
-          <caption class = "a">Notification Issues</caption>
+          <caption class = "a">{appData.timePeriod[timePeriodMapping[option]][3].topic}</caption>
+          <thead>
    <tr >
 <th >Review</th>
 <th> Score </th>
 </tr>
+</thead>
  <tbody class = "e">
  {appData.timePeriod &&appData.timePeriod[timePeriodMapping[option]][3].reviews.map((r)=>(
            <tr className="st_row">
