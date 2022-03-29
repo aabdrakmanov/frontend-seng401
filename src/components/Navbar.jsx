@@ -121,28 +121,7 @@ function Navbar() {
             )}
           </ul>
 
-          <form
-            onSubmit={searchFunction}
-            className="d-flex justify-content-end navbar-right"
-          >
-            <select onChange={optionChange} value={formOption} className="mx-1">
-              <option value="All">All</option>
-              <option value="Apps">Apps</option>
-              <option value="Developers">Developers</option>
-              <option value="Users">Users</option>
-            </select>
-            <input
-              onChange={textChange}
-              value={formText}
-              className="form-control me-2 "
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-warning" type="submit">
-              Search
-            </button>
-          </form>
+          
         </div>
       </div>
     </nav>
