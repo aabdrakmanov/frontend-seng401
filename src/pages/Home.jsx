@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from "../components/Navbar"
 import triangle from "../static/img/obj_triangle.png" 
 import dev4 from "../static/img/dev4.png"
-import dev2 from "../static/img/dev2.png"
+
 import {Link} from 'react-router-dom'
 function Home() {
   return (
