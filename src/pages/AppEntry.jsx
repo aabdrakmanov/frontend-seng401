@@ -27,6 +27,7 @@ function AppEntry() {
   })
 
   const [loading,setLoading] = useState(true);
+  const [found,setFound] =useState(false)
   let timePeriodMapping = {
     "1 month":3,
     "6 months":2,
@@ -49,17 +50,22 @@ function AppEntry() {
       setData(data)
       console.log(data)
       let formatBugsCopy = []
+      if(data.Bugs){
       for(let i = 0; i< data.Bugs.Status.length;i++ ){
         formatBugsCopy.push({status: data.Bugs.Status[i], issue: data.Bugs.issues[i]})
 
       }
       setFormatBugs(formatBugsCopy)
+    }
+    setFound(true)
       setLoading(false)
     }
   }
   catch(error){
+    console.log("hi")
     console.log(error)
     setLoading(false)
+   setFound(false)
   }
     }
     fetchData()
@@ -70,8 +76,12 @@ function AppEntry() {
   if(localStorage.getItem("username") === null){
     return <><Navbar/> <div>You arent logged in</div> </>
 }
+  
   if(loading){
     return <div>Loading</div>
+  }
+  if(!found){
+    return <><Navbar/> <div>Could not be found or error displaying</div> </>
   }
 
   return (
