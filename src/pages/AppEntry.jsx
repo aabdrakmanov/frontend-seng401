@@ -12,7 +12,7 @@ function AppEntry() {
   const a = (searchParams.get("company"))
   const [formatBugs,setFormatBugs] = useState([])
   const [reviews,setReviews]= useState([])
-  const [option,setOption] = useState("1 month")
+  const [option,setOption] = useState("2 years+")
   const [appData,setData] = useState({
     numberOfReviews:0,
     numberOfPatchs:0,
@@ -33,12 +33,7 @@ function AppEntry() {
     "1 year":1,
     "2 years+":0
   }
-  let mappingTopics = {
-    "registration":0,
-    "interface":1,
-    "notifications":2,
-    "mobile/desktop app":3
-  }
+  
   const changeOption = (e)=>{
     e.preventDefault()
     console.log(e)
