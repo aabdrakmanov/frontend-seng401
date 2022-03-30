@@ -44,7 +44,7 @@ function AppEntry() {
     let isMounted = true;
     const fetchData = async()=>{
       try{
-      const data =  await fetch(`https://api-401-ml.herokuapp.com/devResult?company=${a}`).then((response)=> response.json())
+      const data =  await fetch(`https://api-401-ml.herokuapp.com/devResult?company=${a}&userCompany=${localStorage.getItem("company")}`).then((response)=> response.json())
       if(isMounted){
       setData(data)
       console.log(data)
@@ -99,11 +99,11 @@ function AppEntry() {
               <span>Advanced Review Analysis</span>
             </a>
           </li>
-          <li className="nav-item">
+        {localStorage.getItem("company") === appData.company &&  <li className="nav-item">
             <a className="nav-link" href="#contact-us">
               <span>Bug Tracker</span>
             </a>
-          </li>
+          </li> }
         </ul>
       </div>
       <div className="parallax-content baner-content" id="home">
@@ -419,7 +419,7 @@ function AppEntry() {
           </div>
         </div>
       </div>
-      <div className="parallax-content contact-content" id="contact-us">
+    {localStorage.getItem("company") === appData.company &&  <div className="parallax-content contact-content" id="contact-us">
         <h1>Bug Tracker</h1>
         <div className="line-dec"></div>
         <div className="trial">
@@ -446,19 +446,19 @@ function AppEntry() {
               </tr>
             </thead>
             <tbody>
-              {localStorage.getItem("company") === a && formatBugs.map((bug)=>(
+           { formatBugs.map((bug)=>(
                 <tr>
                 <td>{bug.issue}</td>
                 <td>{bug.status}</td>
-              </tr>))
+              </tr>)) }
 
 
-              }
+              
 
             </tbody>
           </table>
         </div>
-      </div>
+      </div>}
       <footer>
         <div className="container">
           <div className="row">
