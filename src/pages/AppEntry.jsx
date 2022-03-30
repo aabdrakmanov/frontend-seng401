@@ -28,10 +28,10 @@ function AppEntry() {
 
   const [loading,setLoading] = useState(true);
   let timePeriodMapping = {
-    "1 month":0,
-    "6 months":1,
-    "1 year":2,
-    "2 years+":3
+    "1 month":3,
+    "6 months":2,
+    "1 year":1,
+    "2 years+":0
   }
   let mappingTopics = {
     "registration":0,
@@ -289,26 +289,29 @@ function AppEntry() {
                   frames
                 </p>
                 <ul className="tabs clearfix" data-tabgroup="first-tab-group">
-                    <li>
-                      <a onClick = {changeOption} href="#our-story" value = "1 month"  className={option === "1 month" ?"active": ""}>
-                        1 month
-                      </a>
-                    </li>
-                    <li>
+                <li>
                      
-                      <a onClick = {changeOption} href="#our-story" value = "6 months"  className={option === "6 months" ?"active": ""}>6 months</a>
-                      
-                    </li>
-                    <li>
+                     <a onClick = {changeOption} href="#our-story"value = "2 years+" className={option === "2 years+" ?"active": ""}>2 years+</a>
+                     
+                   </li>
+                   <li>
                       
                       <a onClick = {changeOption} href="#our-story" value = "1 year"  className={option === "1 year" ?"active": ""}>1 year</a>
                       
                     </li>
                     <li>
                      
-                      <a onClick = {changeOption} href="#our-story"value = "2 years+" className={option === "2 years+" ?"active": ""}>2 years+</a>
-                      
+                     <a onClick = {changeOption} href="#our-story" value = "6 months"  className={option === "6 months" ?"active": ""}>6 months</a>
+                     
+                   </li>
+                    <li>
+                      <a onClick = {changeOption} href="#our-story" value = "1 month"  className={option === "1 month" ?"active": ""}>
+                        1 month
+                      </a>
                     </li>
+                   
+                    
+                    
                   </ul>
                 <br />
               
