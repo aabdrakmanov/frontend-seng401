@@ -144,7 +144,7 @@ function Home() {
                             <p><b>Signing up for a Developer account will enable you to view the analytics for your application. Most importantly, it will provide you with numerous bug identification and tracking features like Advanced Customer Reviews Analyzer, Bug Tracker, Patch Notes Mapper and much more...</b></p>
                             <Link to = "signup"><button type="button" className="btn btn-outline-primary1"  >Try Now!</button> </Link>
                         </div>
-                       <img src = {dev2}></img>
+                       <img src = "https://cdn.discordapp.com/attachments/930491173141897360/958585317219266570/unknown.png"></img>
                         </div>
                     </div>
 
